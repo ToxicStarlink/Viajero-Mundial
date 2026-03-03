@@ -41,7 +41,7 @@ imagen
 
 <nav class="nav">
 <a href="partidos.php">Partidos</a>
-<a href="#">Estadios</a>
+<a href="guia.php">Guía Turística</a>
 </nav>
 
 <?php if(isset($_SESSION['usuario'])){ ?>
@@ -283,7 +283,7 @@ de seguimiento utilizada durante los partidos.
 
 
 <div class="noticia-card">
-
+    
 <img src="IMG/info3.jpg">
 
 <div class="noticia-info">

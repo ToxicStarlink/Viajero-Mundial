@@ -4,7 +4,7 @@
 <head>
 
 <meta charset="UTF-8">
-<title>Viajero Mundial</title>
+<title>⚽ Viajero Mundial</title>
 
 <link rel="stylesheet" href="login.css">
 

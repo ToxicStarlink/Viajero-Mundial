@@ -1,83 +1,185 @@
-.tabla-partidos{
-
-margin-top:60px;
-
-}
-
-.tabla-partidos h2{
-
-margin-bottom:25px;
-
+body{
+margin:0;
+font-family:'Ubuntu', sans-serif;
+background:#ffffff;
+color:#111;
 }
 
 
-table{
+/* CONTENEDOR GENERAL */
 
-width:100%;
+body > *{
+max-width:1200px;
+margin-left:auto;
+margin-right:auto;
+}
 
-border-collapse:collapse;
 
+
+/* HEADER */
+
+.header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:18px 40px;
 background:white;
+box-shadow:0 4px 20px rgba(0,0,0,0.08);
+position:sticky;
+top:20px;
+border-radius:14px;
+z-index:1000;
+}
 
-border-radius:12px;
+.logo a{
+font-size:22px;
+font-weight:700;
+text-decoration:none;
+color:#00b894;
+}
 
-overflow:hidden;
+.menu-derecha{
 
-box-shadow:0 10px 30px rgba(0,0,0,0.1);
+display:flex;
+align-items:center;
+gap:30px;
 
 }
 
-
-thead{
-
-background:#00b894;
-
-color:white;
-
+.nav{
+display:flex;
+gap:25px;
 }
 
-
-th, td{
-
-padding:15px;
-
-text-align:left;
-
-border-bottom:1px solid #eee;
-
-}
-
-
-tbody tr:hover{
-
-background:#f7f7f7;
-
-}
-
-
-.comprar{
-
-background:#00b894;
-
-color:white;
-
-border:none;
-
-padding:8px 14px;
-
-border-radius:6px;
-
-cursor:pointer;
-
+.nav a{
+text-decoration:none;
+color:#333;
 font-weight:500;
-
 transition:0.2s;
+}
 
+.nav a:hover{
+color:#00b894;
+}
+
+.login{
+background:#00b894;
+color:white;
+padding:8px 16px;
+border-radius:6px;
+text-decoration:none;
+font-weight:500;
 }
 
 
-.comprar:hover{
 
-background:#009e7a;
+/* PARTIDOS */
 
+.partidos{
+padding:60px 0;
+}
+.partidos h2{
+margin-bottom:30px;
+}
+
+/* FILTRO EQUIPOS */
+
+.filtro-equipos{
+margin-bottom:30px;
+display:flex;
+align-items:center;
+gap:15px;
+}
+
+.filtro-equipos select{
+padding:10px 14px;
+border-radius:6px;
+border:1px solid #ccc;
+font-family:'Ubuntu', sans-serif;
+cursor:pointer;
+}
+
+/* FILTROS */
+
+.filtros{
+display:flex;
+gap:15px;
+margin-bottom:35px;
+flex-wrap:wrap;
+}
+
+.filtros input{
+padding:10px 14px;
+border-radius:6px;
+border:1px solid #ccc;
+font-family:'Ubuntu', sans-serif;
+}
+
+.filtros select{
+padding:10px 14px;
+border-radius:6px;
+border:1px solid #ccc;
+font-family:'Ubuntu', sans-serif;
+cursor:pointer;
+}
+
+/* LISTA */
+
+.contenedor-partidos-lista{
+display:flex;
+flex-direction:column;
+gap:20px;
+}
+
+/* RECTANGULO */
+.partido{
+background:white;
+border-radius:12px;
+box-shadow:0 4px 12px rgba(0,0,0,0.08);
+padding:22px 25px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+transition:0.25s;
+}
+
+.partido:hover{
+transform:translateY(-4px);
+box-shadow:0 12px 28px rgba(0,0,0,0.15);
+}
+
+/* INFO */
+.partido-info h3{
+margin:0 0 6px 0;
+}
+
+.partido-info p{
+margin:0 0 4px 0;
+color:#666;
+}
+
+/* BOTON */
+.partido button{
+background:#00b894;
+color:white;
+border:none;
+padding:10px 20px;
+border-radius:6px;
+font-weight:500;
+cursor:pointer;
+transition:0.2s;
+}
+
+.partido button:hover{
+background:#00997a;
+}
+
+/* FOOTER */
+footer{
+text-align:center;
+padding:25px;
+background:white;
+border-top:1px solid #eee;
+margin-top:40px;
+border-radius:12px;
 }

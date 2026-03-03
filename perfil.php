@@ -64,8 +64,8 @@ Esto permitirá mostrar en el perfil todas las compras del usuario.
 <div class="menu-derecha">
 
 <nav class="nav">
-<a href="#">Partidos</a>
-<a href="#">Estadios</a>
+<a href="partidos.php">Partidos</a>
+<a href="guia.php">Guía Turística</a>
 </nav>
 
 <a href="perfil.php" class="login">Mi perfil</a>

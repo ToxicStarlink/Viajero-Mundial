@@ -47,7 +47,7 @@ INSERT INTO usuarios (nombre,apellido,correo,password,fecha_registro)
 <head>
 
 <meta charset="UTF-8">
-<title>Registro | Viajero Mundial</title>
+<title>⚽ Viajero Mundial</title>
 
 <link rel="stylesheet" href="login.css">
 
