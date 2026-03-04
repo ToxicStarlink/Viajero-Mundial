@@ -1,6 +1,17 @@
 <?php
 session_start();
 
+if (isset($_GET['logout'])) {
+    session_destroy();
+    header("Location: inicio.php");
+    exit();
+}
+
+if (!isset($_SESSION['usuario'])) {
+    header("Location: login.php");
+    exit();
+}
+
 /*
 
 BASE DE DATOS FUTURA
@@ -85,15 +96,17 @@ Esto permitirá mostrar en el perfil todas las compras del usuario.
 
 <h3>Información del usuario</h3>
 
-<p><strong>Usuario:</strong> July</p>
+<p><strong>Usuario:</strong> <?php echo $_SESSION['usuario']; ?></p>
 
-<p><strong>Nombre:</strong> Julian</p>
+<p><strong>Nombre:</strong> <?php echo $_SESSION['nombre']; ?></p>
 
-<p><strong>Apellido:</strong> Macias</p>
+<p><strong>Apellido:</strong> <?php echo $_SESSION['apellido']; ?></p>
 
-<p><strong>Correo:</strong> July3p@gmail.com</p>
+<p><strong>Correo:</strong> <?php echo $_SESSION['correo']; ?></p>
 
 <p><strong>Miembro desde:</strong> 2026</p>
+
+<a href="perfil.php?logout=true" style="display:inline-block; margin-top:15px; background:#ff4d4d; color:white; padding:10px 20px; border-radius:6px; text-decoration:none; font-weight:500;">Cerrar sesión</a>
 
 </div>
 

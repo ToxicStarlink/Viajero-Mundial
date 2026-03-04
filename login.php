@@ -1,3 +1,17 @@
+<?php
+session_start();
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Simulación de sesión (ya que no hay base de datos conectada aún)
+    $_SESSION['usuario'] = "Viajero"; 
+    $_SESSION['correo'] = $_POST['correo'];
+    $_SESSION['nombre'] = "Viajero";
+    $_SESSION['apellido'] = "Mundial";
+    
+    header("Location: inicio.php");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 
