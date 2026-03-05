@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -28,7 +29,11 @@
 <a href="guia.php">Guía Turística</a>
 </nav>
 
-<a href="login.php" class="login">Iniciar sesión</a>
+<?php if(isset($_SESSION['usuario'])){ ?>
+    <a href="perfil.php" class="login">Mi perfil</a>
+<?php } else { ?>
+    <a href="login.php" class="login">Iniciar sesión</a>
+<?php } ?>
 
 </div>
 

@@ -1,4 +1,15 @@
 <?php
+session_start();
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $_SESSION['nombre'] = $_POST['nombre'];
+    $_SESSION['apellido'] = $_POST['apellido'];
+    $_SESSION['usuario'] = $_POST['usuario'];
+    $_SESSION['correo'] = $_POST['correo'];
+    
+    header("Location: inicio.php");
+    exit();
+}
 /*
 
 NOTAS PARA BASE DE DATOS
