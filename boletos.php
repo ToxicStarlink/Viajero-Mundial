@@ -40,10 +40,10 @@
 
 <div class="mapa">
 
-<!-- MAPA BASE DEL ESTADIO -->
+<!-- MAPA BASE -->
 <img src="MAP/A1.png" class="estadio-base">
 
-<!-- ZONA CLICKEABLE -->
+<!-- ZONAS -->
 <div class="zona zona-e1" onclick="comprarZona('E1')">
 <img src="MAP/E1.png">
 </div>
@@ -74,6 +74,55 @@
 
 <div class="zona zona-e8" onclick="comprarZona('E8')">
 <img src="MAP/E8.png">
+</div>
+
+<div class="zona zona-f1" onclick="comprarZona('F1')">
+<img src="MAP/F1.png">
+</div>
+
+<div class="zona zona-f2" onclick="comprarZona('F2')">
+<img src="MAP/F2.png">
+</div>
+
+<div class="zona zona-f3" onclick="comprarZona('F3')">
+<img src="MAP/F3.png">
+</div>
+
+<div class="zona zona-f4" onclick="comprarZona('F4')">
+<img src="MAP/F4.png">
+</div>
+
+<div class="zona zona-f5" onclick="comprarZona('F5')">
+<img src="MAP/F5.png">
+</div>
+
+<div class="zona zona-f6" onclick="comprarZona('F6')">
+<img src="MAP/F6.png">
+</div>
+
+<div class="zona zona-f7" onclick="comprarZona('F7')">
+<img src="MAP/F7.png">
+</div>
+
+<div class="zona zona-f8" onclick="comprarZona('F8')">
+<img src="MAP/F8.png">
+</div>
+
+<div class="zona zona-g1" onclick="comprarZona('G1')">
+<img src="MAP/G1.png">
+</div>
+
+<div class="zona zona-g2" onclick="comprarZona('G2')">
+<img src="MAP/G2.png">
+</div>
+
+<div class="zona zona-g3" onclick="comprarZona('G3')">
+<img src="MAP/G3.png">
+</div>
+
+<div class="zona zona-g4" onclick="comprarZona('G4')">
+<img src="MAP/G4.png">
+
 </div>
 
 </div>
