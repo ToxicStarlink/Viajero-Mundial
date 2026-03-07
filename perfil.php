@@ -12,42 +12,6 @@ if (!isset($_SESSION['usuario'])) {
     exit();
 }
 
-/*
-
-BASE DE DATOS FUTURA
-
-TABLA: usuarios
-
-id_usuario
-nombre
-apellido
-usuario
-correo
-password
-fecha_registro
-
-
-TABLA: compras
-
-id_compra INT AUTO_INCREMENT PRIMARY KEY
-id_usuario INT
-id_partido INT
-equipo_local
-equipo_visitante
-estadio
-fecha_partido
-precio
-cantidad_boletos
-fecha_compra DATETIME
-
-RELACION
-
-usuarios.id_usuario = compras.id_usuario
-
-Esto permitirá mostrar en el perfil todas las compras del usuario.
-
-*/
-
 ?>
 
 <!DOCTYPE html>

@@ -1,0 +1,64 @@
+body{
+margin:0;
+font-family:'Ubuntu', sans-serif;
+background:#6498e6;
+}
+
+/* HEADER */
+.header{
+background:#ffffff;
+color:white;
+padding:15px 40px;
+font-weight:700;
+font-size:20px;
+}
+
+/* CONTENEDOR */
+.paypal{
+display:flex;
+justify-content:center;
+align-items:center;
+height:80vh;
+}
+
+/* CAJA */
+.paypal-box{
+background:white;
+padding:40px;
+border-radius:12px;
+box-shadow:0 8px 25px rgba(0,0,0,0.15);
+width:350px;
+text-align:center;
+
+}
+.paypal-box h2{
+margin-top:0;
+}
+
+.total{
+font-size:20px;
+color:#003087;
+margin:20px 0;
+}
+
+/* BOTON */
+button{
+background:#ffc439;
+border:none;
+padding:12px 20px;
+border-radius:6px;
+font-weight:600;
+cursor:pointer;
+width:100%;
+}
+
+/* FOOTER */
+
+footer{
+text-align:center;
+padding:25px;
+background:white;
+border-top:1px solid #eee;
+margin-top:60px;
+border-radius:12px;
+}

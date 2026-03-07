@@ -1,7 +1,14 @@
 function comprarZona(zona){
 
-console.log("Zona seleccionada:", zona)
+const params = new URLSearchParams(window.location.search)
 
-alert("Seleccionaste la " + zona)
+const partido = params.get("partido")
+
+console.log("Partido:", partido)
+console.log("Zona:", zona)
+
+/* REDIRIGE A LOS ASIENTOS */
+
+window.location.href = "asientos.php?partido=" + partido + "&zona=" + zona
 
 }

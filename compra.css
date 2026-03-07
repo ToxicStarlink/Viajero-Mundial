@@ -1,0 +1,166 @@
+body{
+margin:0;
+font-family:'Ubuntu', sans-serif;
+background:#ffffff;
+color:#111;
+}
+
+/* CONTENEDOR GENERAL */
+
+body > *{
+max-width:1200px;
+margin-left:auto;
+margin-right:auto;
+}
+
+/* HEADER */
+
+.header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:18px 40px;
+background:white;
+box-shadow:0 4px 20px rgba(0,0,0,0.08);
+position:sticky;
+top:20px;
+border-radius:14px;
+z-index:1000;
+}
+
+.logo a{
+font-size:22px;
+font-weight:700;
+text-decoration:none;
+color:#00b894;
+}
+
+.menu-derecha{
+display:flex;
+align-items:center;
+gap:30px;
+}
+
+.nav{
+display:flex;
+gap:25px;
+}
+
+.nav a{
+text-decoration:none;
+color:#333;
+font-weight:500;
+}
+
+.nav a:hover{
+color:#00b894;
+}
+
+.login{
+background:#00b894;
+color:white;
+padding:8px 16px;
+border-radius:6px;
+text-decoration:none;
+font-weight:500;
+}
+
+/* SECCION COMPRA */
+
+.compra{
+padding:60px 0;
+}
+
+.contenedor-compra{
+
+display:flex;
+gap:40px;
+
+background:white;
+
+padding:30px;
+
+border-radius:12px;
+
+box-shadow:0 4px 12px rgba(0,0,0,0.08);
+
+align-items:center;
+
+}
+
+/* IMAGEN */
+
+.imagen-partido img{
+
+width:350px;
+
+border-radius:12px;
+
+}
+
+/* INFO */
+
+.info-compra{
+
+flex:1;
+
+}
+
+.info-compra h1{
+
+margin-top:0;
+
+}
+
+.dato{
+
+margin:8px 0;
+
+color:#444;
+
+}
+
+.precio{
+
+margin-top:15px;
+
+font-size:20px;
+
+color:#00b894;
+
+font-weight:600;
+
+}
+
+/* BOTON */
+
+button{
+
+margin-top:20px;
+
+background:#00b894;
+
+color:white;
+
+border:none;
+
+padding:12px 25px;
+
+border-radius:6px;
+
+cursor:pointer;
+
+font-size:16px;
+
+}
+
+/* FOOTER */
+
+footer{
+text-align:center;
+padding:25px;
+background:white;
+border-top:1px solid #eee;
+margin-top:60px;
+border-radius:12px;
+}

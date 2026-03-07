@@ -1,18 +1,6 @@
 <?php
 session_start();
 
-/* FUTURA BASE DE DATOS
-
-Tabla: partidos
-id_partido
-equipo_local
-equipo_visitante
-estadio
-ciudad
-fecha
-precio
-imagen
-*/
 ?>
 
 <!DOCTYPE html>
@@ -83,8 +71,8 @@ imagen
 <div class="card" data-partido="mexico-brasil">
 <img src="IMG/partido1.jpg">
 <div class="card-info">
-<h3>México vs Brasil</h3>
-<p>Estadio Azteca · Ciudad de México</p>
+<h3>Brasil vs Francia</h3>
+<p>Ontario · Canadá</p>
 <span>$120 USD</span>
 </div>
 </div>
@@ -92,8 +80,8 @@ imagen
 <div class="card" data-partido="argentina-francia">
 <img src="IMG/partido2.jpg">
 <div class="card-info">
-<h3>Argentina vs Francia</h3>
-<p>Estadio Lusail · Qatar</p>
+<h3>Uruguay vs Colombia</h3>
+<p>Florida · USA</p>
 <span>$150 USD</span>
 </div>
 </div>
@@ -101,8 +89,8 @@ imagen
 <div class="card" data-partido="espana-alemania">
 <img src="IMG/partido3.jpg">
 <div class="card-info">
-<h3>España vs Alemania</h3>
-<p>Allianz Arena · Alemania</p>
+<h3>Argentina vs Alemania</h3>
+<p>California · USA</p>
 <span>$130 USD</span>
 </div>
 </div>
@@ -123,8 +111,8 @@ imagen
 <img src="IMG/partido4.jpg">
 
 <div class="proximo-info">
-<h3>Argentina vs Alemania</h3>
-<p>14 Junio</p>
+<h3>Argentina vs Suiza</h3>
+<p>10 Julio</p>
 </div>
 
 <div class="tooltip">
@@ -139,8 +127,8 @@ La informacion no ha sido dada
 <img src="IMG/partido5.jpg">
 
 <div class="proximo-info">
-<h3>Brasil vs Francia</h3>
-<p>16 Junio</p>
+<h3>Brasil vs Inglaterra</h3>
+<p>16 Julio</p>
 </div>
 
 <div class="tooltip">
@@ -155,8 +143,8 @@ La informacion no ha sido dada
 <img src="IMG/partido6.jpg">
 
 <div class="proximo-info">
-<h3>México vs España</h3>
-<p>18 Junio</p>
+<h3>México vs Brasil</h3>
+<p>12 Julio</p>
 </div>
 
 <div class="tooltip">

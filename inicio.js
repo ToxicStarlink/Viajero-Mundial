@@ -4,14 +4,11 @@ cards.forEach(card => {
 
 card.addEventListener("click", function(){
 
-let partido = card.getAttribute("data-partido")
-
-window.location.href = "partido.php?game=" + partido
+window.location.href = "partidos.php"
 
 })
 
 })
-
 
 
 /* SLIDER HERO */

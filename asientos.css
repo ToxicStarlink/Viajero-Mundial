@@ -1,0 +1,213 @@
+body{
+margin:0;
+font-family:'Ubuntu', sans-serif;
+background:#ffffff;
+color:#111;
+}
+
+/* CONTENEDOR GENERAL */
+
+body > *{
+max-width:1200px;
+margin-left:auto;
+margin-right:auto;
+}
+
+/* HEADER */
+
+.header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:18px 40px;
+background:white;
+box-shadow:0 4px 20px rgba(0,0,0,0.08);
+position:sticky;
+top:20px;
+border-radius:14px;
+z-index:1000;
+}
+
+.logo a{
+font-size:22px;
+font-weight:700;
+text-decoration:none;
+color:#00b894;
+}
+
+.menu-derecha{
+display:flex;
+align-items:center;
+gap:30px;
+}
+
+.nav{
+display:flex;
+gap:25px;
+}
+
+.nav a{
+text-decoration:none;
+color:#333;
+font-weight:500;
+}
+
+.nav a:hover{
+color:#00b894;
+}
+
+.login{
+background:#00b894;
+color:white;
+padding:8px 16px;
+border-radius:6px;
+text-decoration:none;
+font-weight:500;
+}
+
+/* INFO PARTIDO */
+
+.info-partido{
+margin:40px auto 20px auto;
+padding:25px 30px;
+background:white;
+border-radius:12px;
+box-shadow:0 4px 12px rgba(0,0,0,0.08);
+}
+
+.estadio{
+color:#00b894;
+font-weight:600;
+}
+
+.fecha{
+color:#666;
+}
+
+.zona{
+margin-top:5px;
+color:#444;
+}
+
+
+/* SECCION ASIENTOS */
+
+.asientos{
+padding:50px 0;
+text-align:center;
+}
+
+
+/* GRID */
+
+.contenedor-asientos{
+
+display:grid;
+
+grid-template-columns:repeat(11,24px);
+
+gap:8px;
+
+justify-content:center;
+
+margin-bottom:40px;
+
+}
+
+
+/* ASIENTO */
+
+.asiento{
+
+width:24px;
+height:24px;
+
+background:#ddd;
+
+border-radius:4px;
+
+cursor:pointer;
+
+display:flex;
+
+align-items:center;
+justify-content:center;
+
+font-size:10px;
+
+transition:0.2s;
+
+}
+
+.asiento:hover{
+background:#00b894;
+color:white;
+transform:scale(1.1);
+}
+
+.asiento.seleccionado{
+background:#00b894;
+color:white;
+}
+
+.asiento.ocupado{
+background:#444;
+color:white;
+cursor:not-allowed;
+}
+
+/* PASILLO */
+
+.pasillo{
+width:18px;
+height:24px;
+}
+
+
+/* PANEL COMPRA */
+
+.panel-compra{
+
+background:white;
+
+padding:20px;
+
+border-radius:12px;
+
+box-shadow:0 4px 12px rgba(0,0,0,0.08);
+
+width:300px;
+
+margin:auto;
+
+}
+
+.panel-compra button{
+
+margin-top:10px;
+
+background:#00b894;
+
+color:white;
+
+border:none;
+
+padding:10px 20px;
+
+border-radius:6px;
+
+cursor:pointer;
+
+}
+
+
+/* FOOTER */
+
+footer{
+text-align:center;
+padding:25px;
+background:white;
+border-top:1px solid #eee;
+margin-top:60px;
+border-radius:12px;
+}
