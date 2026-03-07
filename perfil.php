@@ -56,7 +56,7 @@ Esto permitirá mostrar en el perfil todas las compras del usuario.
 <head>
 
 <meta charset="UTF-8">
-<title>Mi perfil | Viajero Mundial</title>
+<title>⚽ Viajero Mundial</title>
 
 <link rel="stylesheet" href="inicio.css">
 

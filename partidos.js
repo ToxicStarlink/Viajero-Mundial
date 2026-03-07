@@ -1,20 +1,7 @@
 function verBoletos(partido){
 console.log("Partido seleccionado:", partido)
-alert("Seleccionaste el partido: " + partido)
-
-/*
-FUTURO SISTEMA DE COMPRA
-
-Aquí se enviará al usuario a la página de compra
-
-ejemplo:
-
+/* ID DEL PARTIDO */
 window.location.href = "boletos.php?partido=" + partido
-
-Esto permitirá saber qué partido está comprando
-y guardar la compra en su perfil
-*/
-
 }
 
 const buscar = document.getElementById("buscarEquipo")
@@ -24,10 +11,7 @@ const ordenarFecha = document.getElementById("ordenarFecha")
 const contenedor = document.querySelector(".contenedor-partidos-lista")
 let partidos = Array.from(document.querySelectorAll(".partido"))
 
-/* ============================= */
 /* FILTROS */
-/* ============================= */
-
 function aplicarFiltros(){
 let texto = buscar.value.toLowerCase()
 let equipo = filtroEquipo.value
@@ -51,9 +35,7 @@ partido.style.display = mostrar ? "flex" : "none"
 })
 }
 
-/* ============================= */
 /* ORDENAR FECHAS */
-/* ============================= */
 
 function ordenarPartidos(){
 let valor = ordenarFecha.value
@@ -84,10 +66,7 @@ contenedor.appendChild(partido)
 })
 }
 
-
-/* ============================= */
 /* EVENTOS */
-/* ============================= */
 
 buscar.addEventListener("keyup", aplicarFiltros)
 filtroEquipo.addEventListener("change", aplicarFiltros)

@@ -1,9 +1,77 @@
+<?php
+
+session_start();
+/* RECIBIR ID DEL PARTIDO */
+$partido = $_GET['partido'] ?? null;
+/* INFORMACION DE LOS PARTIDOS */
+$nombrePartido = "";
+$estadio = "";
+$fecha = "";
+
+switch($partido){
+
+case "P001":
+$nombrePartido = "México vs España";
+$estadio = "Estadio Azteca - Ciudad de México";
+$fecha = "29 Junio 2026 · 18:00";
+break;
+
+case "P002":
+$nombrePartido = "Argentina vs Alemania";
+$estadio = "SoFi Stadium - Los Ángeles";
+$fecha = "14 Junio 2026 · 18:00";
+break;
+
+case "P003":
+$nombrePartido = "Brasil vs Francia";
+$estadio = "BMO Field - Toronto";
+$fecha = "16 Junio 2026 · 19:00";
+break;
+
+case "P004":
+$nombrePartido = "Portugal vs Inglaterra";
+$estadio = "AT&T Stadium - Dallas";
+$fecha = "18 Junio 2026 · 17:00";
+break;
+
+case "P005":
+$nombrePartido = "Italia vs Países Bajos";
+$estadio = "Estadio Akron - Guadalajara";
+$fecha = "20 Junio 2026 · 21:00";
+break;
+
+case "P006":
+$nombrePartido = "Uruguay vs Colombia";
+$estadio = "Hard Rock Stadium - Miami";
+$fecha = "22 Junio 2026 · 18:30";
+break;
+
+case "P007":
+$nombrePartido = "Ecuador vs Paraguay";
+$estadio = "BMO Field - Toronto";
+$fecha = "26 Junio 2026 · 17:00";
+break;
+
+case "P008":
+$nombrePartido = "Austria vs Suiza";
+$estadio = "Estadio Azteca - Ciudad de México";
+$fecha = "29 Junio 2026 · 19:30";
+break;
+
+default:
+$nombrePartido = "Partido no encontrado";
+$estadio = "";
+$fecha = "";
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
 
 <meta charset="UTF-8">
-<title>Boletos | Viajero Mundial</title>
+<title>⚽ Viajero Mundial</title>
 
 <link rel="stylesheet" href="boletos.css">
 
@@ -31,6 +99,16 @@
 </div>
 
 </header>
+
+<section class="info-partido">
+
+<h1><?php echo $nombrePartido; ?></h1>
+
+<p class="estadio"><?php echo $estadio; ?></p>
+
+<p class="fecha"><?php echo $fecha; ?></p>
+
+</section>
 
 <div class="contenedor-pagina">
 

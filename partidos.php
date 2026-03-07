@@ -5,7 +5,7 @@
 <head>
 
 <meta charset="UTF-8">
-<title>Partidos | Viajero Mundial</title>
+<title>⚽ Viajero Mundial</title>
 
 <link rel="stylesheet" href="partidos.css">
 
@@ -93,7 +93,7 @@
 <p>México, Ciudad de México, CDMX</p>
 </div>
 
-<button onclick="verBoletos('mexico-espana')">
+<button onclick="verBoletos('P001')">
 Ver boletos
 </button>
 </div>
@@ -107,7 +107,7 @@ Ver boletos
 <p>USA, Los Ángeles, California</p>
 </div>
 
-<button onclick="verBoletos('argentina-alemania')">
+<button onclick="verBoletos('P002')">
 Ver boletos
 </button>
 </div>
@@ -121,7 +121,7 @@ Ver boletos
 <p>Canadá, Toronto, Ontario</p>
 </div>
 
-<button onclick="verBoletos('brasil-francia')">
+<button onclick="verBoletos('P003')">
 Ver boletos
 </button>
 </div>
@@ -135,7 +135,7 @@ Ver boletos
 <p>USA, Dallas, Texas</p>
 </div>
 
-<button onclick="verBoletos('portugal-inglaterra')">
+<button onclick="verBoletos('P004')">
 Ver boletos
 </button>
 </div>
@@ -149,7 +149,7 @@ Ver boletos
 <p>México, Guadalajara, Jalisco</p>
 </div>
 
-<button onclick="verBoletos('italia-paisesbajos')">
+<button onclick="verBoletos('P005')">
 Ver boletos
 </button>
 </div>
@@ -163,7 +163,7 @@ Ver boletos
 <p>USA, Miami, Florida</p>
 </div>
 
-<button onclick="verBoletos('uruguay-colombia')">
+<button onclick="verBoletos('P006')">
 Ver boletos
 </button>
 </div>
@@ -177,7 +177,7 @@ Ver boletos
 <p>Canadá, Toronto, Ontario</p>
 </div>
 
-<button onclick="verBoletos('ecuador-paraguay')">
+<button onclick="verBoletos('P007')">
 Ver boletos
 </button>
 </div>
@@ -191,7 +191,7 @@ Ver boletos
 <p>México, Ciudad de México, CDMX</p>
 </div>
 
-<button onclick="verBoletos('austria-suiza')">
+<button onclick="verBoletos('P008')">
 Ver boletos
 </button>
 </div>

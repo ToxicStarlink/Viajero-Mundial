@@ -296,3 +296,29 @@ border-top:1px solid #eee;
 margin-top:60px;
 border-radius:12px;
 }
+
+/* INFORMACION DEL PARTIDO */
+
+.info-partido{
+max-width:1200px;
+margin:40px auto 20px auto;
+padding:25px 30px;
+background:white;
+border-radius:12px;
+box-shadow:0 4px 12px rgba(0,0,0,0.08);
+}
+
+.info-partido h1{
+margin:0 0 10px 0;
+font-size:28px;
+}
+
+.estadio{
+color:#00b894;
+font-weight:600;
+margin-bottom:6px;
+}
+
+.fecha{
+color:#666;
+}
