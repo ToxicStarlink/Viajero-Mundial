@@ -100,7 +100,10 @@ $nombrePartido = "Partido";
 
 <p class="precio"><b>Total:</b> $<?php echo $total; ?></p>
 
-<button id="irPaypal">Ir a PayPal</button>
+<div id="paypal-section" style="margin-top: 24px;" data-total="<?php echo htmlspecialchars($total); ?>" data-asientos="<?php echo htmlspecialchars($asientos); ?>">
+  <div id="paypal-button-container"></div>
+  <p id="paypal-message" style="display:none; color:#b22222; margin-top:12px;"></p>
+</div>
 
 </div>
 
@@ -115,6 +118,7 @@ $nombrePartido = "Partido";
 
 </footer>
 
+<script src="https://www.paypal.com/sdk/js?client-id=sb&currency=MXN"></script>
 <script src="compra.js"></script>
 
 </body>
