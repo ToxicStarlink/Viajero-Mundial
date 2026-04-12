@@ -42,7 +42,7 @@ $nombrePartido = "Partido";
 <meta charset="UTF-8">
 <title>⚽ Viajero Mundial</title>
 
-<link rel="stylesheet" href="asientos.css">
+<link rel="stylesheet" href="/CSS/asientos.css">
 
 <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
 
@@ -126,7 +126,7 @@ echo "<div class='asiento' id='$asientoID' data-asiento='$asientoID'>$i</div>";
 
 </footer>
 
-<script src="asientos.js"></script>
+<script src="/JS/asientos.js"></script>
 
 </body>
 </html>

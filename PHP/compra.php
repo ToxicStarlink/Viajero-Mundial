@@ -47,7 +47,7 @@ $nombrePartido = "Partido";
 <meta charset="UTF-8">
 <title>Confirmar Compra</title>
 
-<link rel="stylesheet" href="compra.css">
+<link rel="stylesheet" href="/CSS/compra.css">
 
 <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
 
@@ -119,7 +119,7 @@ $nombrePartido = "Partido";
 </footer>
 
 <script src="https://www.paypal.com/sdk/js?client-id=sb&currency=MXN"></script>
-<script src="compra.js"></script>
+<script src="/JS/compra.js"></script>
 
 </body>
 </html>

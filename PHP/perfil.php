@@ -22,7 +22,7 @@ if (!isset($_SESSION['usuario'])) {
 <meta charset="UTF-8">
 <title>⚽ Viajero Mundial</title>
 
-<link rel="stylesheet" href="inicio.css">
+<link rel="stylesheet" href="/CSS/inicio.css">
 
 <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
 

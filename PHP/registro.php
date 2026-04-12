@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <meta charset="UTF-8">
 <title>⚽ Viajero Mundial</title>
 
-<link rel="stylesheet" href="login.css">
+<link rel="stylesheet" href="/CSS/login.css">
 
 <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
 
@@ -61,7 +61,7 @@ Viajero Mundial
 
 </div>
 
-<script src="registro.js"></script>
+<script src="/JS/registro.js"></script>
 
 </body>
 </html>

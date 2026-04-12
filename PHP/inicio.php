@@ -13,7 +13,7 @@ session_start();
 
 <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="inicio.css">
+<link rel="stylesheet" href="/CSS/inicio.css">
 
 </head>
 
@@ -69,7 +69,7 @@ session_start();
 <div class="contenedor-partidos">
 
 <div class="card" data-partido="mexico-brasil">
-<img src="IMG/partido1.jpg">
+<img src="/IMG/partido1.jpg">
 <div class="card-info">
 <h3>Brasil vs Francia</h3>
 <p>Ontario · Canadá</p>
@@ -78,7 +78,7 @@ session_start();
 </div>
 
 <div class="card" data-partido="argentina-francia">
-<img src="IMG/partido2.jpg">
+<img src="/IMG/partido2.jpg">
 <div class="card-info">
 <h3>Uruguay vs Colombia</h3>
 <p>Florida · USA</p>
@@ -87,7 +87,7 @@ session_start();
 </div>
 
 <div class="card" data-partido="espana-alemania">
-<img src="IMG/partido3.jpg">
+<img src="/IMG/partido3.jpg">
 <div class="card-info">
 <h3>Argentina vs Alemania</h3>
 <p>California · USA</p>
@@ -108,7 +108,7 @@ session_start();
 
 <div class="proximo-card">
 
-<img src="IMG/partido4.jpg">
+<img src="/IMG/partido4.jpg">
 
 <div class="proximo-info">
 <h3>Argentina vs Suiza</h3>
@@ -124,7 +124,7 @@ La informacion no ha sido dada
 
 <div class="proximo-card">
 
-<img src="IMG/partido5.jpg">
+<img src="/IMG/partido5.jpg">
 
 <div class="proximo-info">
 <h3>Brasil vs Inglaterra</h3>
@@ -140,7 +140,7 @@ La informacion no ha sido dada
 
 <div class="proximo-card">
 
-<img src="IMG/partido6.jpg">
+<img src="/IMG/partido6.jpg">
 
 <div class="proximo-info">
 <h3>México vs Brasil</h3>
@@ -215,7 +215,7 @@ partidos sin retrasos y sin necesidad de recoger entradas físicas.
 
 <div class="beneficios-imagen">
 
-<img src="IMG/partido7.jpg">
+<img src="/IMG/partido7.jpg">
 
 </div>
 
@@ -234,7 +234,7 @@ partidos sin retrasos y sin necesidad de recoger entradas físicas.
 
 <div class="noticia-card">
 
-<img src="IMG/info1.jpg">
+<img src="/IMG/info1.jpg">
 
 <div class="noticia-info">
 
@@ -253,7 +253,7 @@ para recibir a millones de aficionados.
 
 <div class="noticia-card">
 
-<img src="IMG/info2.jpg">
+<img src="/IMG/info2.jpg">
 
 <div class="noticia-info">
 
@@ -272,7 +272,7 @@ de seguimiento utilizada durante los partidos.
 
 <div class="noticia-card">
     
-<img src="IMG/info3.jpg">
+<img src="/IMG/info3.jpg">
 
 <div class="noticia-info">
 
@@ -299,7 +299,7 @@ del fútbol internacional.
 
 </footer>
 
-<script src="inicio.js"></script>
+<script src="/JS/inicio.js"></script>
 
 </body>
 </html>

@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <meta charset="UTF-8">
 <title>⚽ Viajero Mundial</title>
 
-<link rel="stylesheet" href="login.css">
+<link rel="stylesheet" href="/CSS/login.css">
 
 <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
 
@@ -57,33 +57,11 @@ Viajero Mundial
 
 <div class="note">
 
-<!--
-NOTAS IMPORTANTES PARA BASE DE DATOS
-
-TABLA: usuarios
-
-id_usuario
-nombre
-apellido
-correo
-password
-fecha_registro
-
-PASOS LOGIN FUTURO
-
-1 conectar base
-2 recibir datos POST
-3 buscar correo
-4 verificar password
-5 crear sesión
-6 redirigir inicio.php
--->
-
 </div>
 
 </div>
 
-<script src="login.js"></script>
+<script src="/JS/login.js"></script>
 
 </body>
 </html>

@@ -8,8 +8,8 @@
 <title>⚽ Viajero Mundial</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="partidos.css">
-<link rel="stylesheet" href="guia.css">
+<link rel="stylesheet" href="/CSS/partidos.css">
+<link rel="stylesheet" href="/CSS/guia.css">
 
 </head>
 
@@ -160,7 +160,7 @@ Explorar destinos
 
 </footer>
 
-<script src="guia.js"></script>
+<script src="/JS/guia.js"></script>
 
 </body>
 </html>

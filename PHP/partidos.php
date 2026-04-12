@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>⚽ Viajero Mundial</title>
 
-<link rel="stylesheet" href="partidos.css">
+<link rel="stylesheet" href="/CSS/partidos.css">
 
 <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
 
@@ -208,7 +208,7 @@ Ver boletos
 
 </footer>
 
-<script src="partidos.js"></script>
+<script src="/JS/partidos.js"></script>
 
 </body>
 </html>

@@ -13,7 +13,7 @@ $total = $_GET['total'] ?? 0;
 <meta charset="UTF-8">
 <title>Pago con PayPal</title>
 
-<link rel="stylesheet" href="paypal.css">
+<link rel="stylesheet" href="/CSS/paypal.css">
 
 <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
 
@@ -51,7 +51,7 @@ $total = $_GET['total'] ?? 0;
 
 </footer>
 
-<script src="paypal.js"></script>
+<script src="/JS/paypal.js"></script>
 
 </body>
 

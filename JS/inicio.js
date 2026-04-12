@@ -17,10 +17,10 @@ const hero = document.getElementById("hero")
 
 const imagenes = [
 
-"IMG/Estadio1.jpg",
-"IMG/Estadio2.jpg",
-"IMG/Estadio3.jpg",
-"IMG/Estadio4.jpg"
+"/IMG/Estadio1.jpg",
+"/IMG/Estadio2.jpg",
+"/IMG/Estadio3.jpg",
+"/IMG/Estadio4.jpg"
 
 ]
 
