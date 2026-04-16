@@ -1,1 +1,1 @@
-error de conexión: SQLSTATE[HY000] [1049] Unknown database 'boletos_futbo'error de conexión: SQLSTATE[HY000] [1049] Unknown database 'boletos_fubol'
+error de conexión: SQLSTATE[HY000] [1049] Unknown database 'boletos_futbo'error de conexión: SQLSTATE[HY000] [1049] Unknown database 'boletos_fubol'error de conexión: SQLSTATE[HY000] [2002] Cannot connect to MySQL using SSLerror de conexión: SQLSTATE[HY000] [1105] Connections using insecure transport are prohibited. See https://docs.pingcap.com/tidbcloud/secure-connections-to-serverless-tier-clusters

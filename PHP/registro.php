@@ -1,14 +1,49 @@
 <?php
 session_start();
+include '../conexion.php';
+$error = '';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $_SESSION['nombre'] = $_POST['nombre'];
-    $_SESSION['apellido'] = $_POST['apellido'];
-    $_SESSION['usuario'] = $_POST['usuario'];
-    $_SESSION['correo'] = $_POST['correo'];
-    
-    header("Location: inicio.php");
-    exit();
+    $nombre = trim($_POST['nombre'] ?? '');
+    $apellido = trim($_POST['apellido'] ?? '');
+    $usuario = trim($_POST['usuario'] ?? '');
+    $correo = trim($_POST['correo'] ?? '');
+    $password = $_POST['password'] ?? '';
+    $confirmar = $_POST['confirmar'] ?? '';
+
+    if (!$nombre || !$apellido || !$usuario || !$correo || !$password || !$confirmar) {
+        $error = 'Todos los campos son obligatorios.';
+    } elseif (!filter_var($correo, FILTER_VALIDATE_EMAIL)) {
+        $error = 'El correo no es válido.';
+    } elseif ($password !== $confirmar) {
+        $error = 'Las contraseñas no coinciden.';
+    } else {
+        try {
+            $sql = 'SELECT id FROM usuarios WHERE usuario = ? OR correo = ?';
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute([$usuario, $correo]);
+
+            if ($stmt->rowCount() > 0) {
+                $error = 'El usuario o el correo ya están registrados.';
+            } else {
+                $hash = password_hash($password, PASSWORD_BCRYPT);
+                $sql = 'INSERT INTO usuarios (nombre, apellido, usuario, correo, password) VALUES (?, ?, ?, ?, ?)';
+                $stmt = $pdo->prepare($sql);
+                $stmt->execute([$nombre, $apellido, $usuario, $correo, $hash]);
+
+                $_SESSION['id'] = $pdo->lastInsertId();
+                $_SESSION['nombre'] = $nombre;
+                $_SESSION['apellido'] = $apellido;
+                $_SESSION['usuario'] = $usuario;
+                $_SESSION['correo'] = $correo;
+
+                header('Location: inicio.php');
+                exit();
+            }
+        } catch (PDOException $e) {
+            $error = 'Error en la base de datos: ' . $e->getMessage();
+        }
+    }
 }
 
 ?>
@@ -37,6 +72,12 @@ Viajero Mundial
 
 <h2>Crear cuenta</h2>
 
+<?php if (!empty($error)): ?>
+    <div style="background:#f8d7da;color:#721c24;padding:10px 14px;border-radius:6px;margin-bottom:16px;border:1px solid #f5c6cb;">
+        <?php echo htmlspecialchars($error); ?>
+    </div>
+<?php endif; ?>
+
 <form method="POST" action="registro.php">
 
 <input type="text" name="nombre" placeholder="Nombre" required>
@@ -49,7 +90,7 @@ Viajero Mundial
 
 <input type="password" id="password" name="password" placeholder="Contraseña" required>
 
-<input type="password" id="confirmar" placeholder="Confirmar contraseña" required>
+<input type="password" id="confirmar" name="confirmar" placeholder="Confirmar contraseña" required>
 
 <button type="submit">Registrarse</button>
 
