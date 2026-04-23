@@ -59,7 +59,7 @@ const Boletos = () => {
   };
 
   return (
-    <>
+    <div className="boletos-container">
       <header className="header">
         <div className="logo">
           <Link to="/">Viajero Mundial</Link>
@@ -151,7 +151,7 @@ const Boletos = () => {
           <p>© 2026 Viajero Mundial</p>
         </footer>
       </div>
-    </>
+    </div>
   );
 };
 

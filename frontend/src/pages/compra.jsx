@@ -74,7 +74,7 @@ const Compra = () => {
   const ciudad = lugarSplit[1] || "";
 
   return (
-    <>
+    <div className="compra-container">
       <header className="header">
         <div className="logo"><Link to="/">Viajero Mundial</Link></div>
         <div className="menu-derecha">
@@ -119,7 +119,7 @@ const Compra = () => {
       <footer>
         <p>© 2026 Viajero Mundial</p>
       </footer>
-    </>
+    </div>
   );
 };
 
