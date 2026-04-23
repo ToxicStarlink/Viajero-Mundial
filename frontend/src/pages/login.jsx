@@ -5,7 +5,7 @@ import "../CSS/login.css";
 
 const Login = () => {
   const handleSubmit = (e) => {
-    e.preventDefault(); // Evita que la página se recargue
+    e.preventDefault();
     console.log("Simulando inicio de sesión...");
   };
 

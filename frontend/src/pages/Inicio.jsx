@@ -124,7 +124,6 @@ const Inicio = () => {
         <h2>Próximos partidos del mundial</h2>
         <div className="contenedor-proximos">
           {proximosPartidos.map((partido) => (
-            // Se cambió "card" por "proximo-card" para que coincida con el CSS
             <div className="proximo-card" key={partido.id}>
               <img src={partido.img} alt={partido.equipos} />
               <div className="proximo-info">
