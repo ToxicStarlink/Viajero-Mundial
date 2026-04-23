@@ -6,6 +6,7 @@ import Partidos from "./pages/partidos";
 import Boletos from "./pages/boletos";
 import Registro from "./pages/registro";
 import Compra from "./pages/compra";
+import Guia from "./pages/guia";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/partidos" element={<Partidos />} />
         <Route path="/boletos/:id" element={<Boletos />} />
         <Route path="/compra" element={<Compra />} />
+        <Route path="/guia" element={<Guia />} />
       </Routes>
     </Router>
   );
