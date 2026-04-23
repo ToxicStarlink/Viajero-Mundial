@@ -65,7 +65,7 @@ const Partidos = () => {
   ];
 
   return (
-    <>
+    <div className="partidos-container">
       <header className="header">
         <div className="logo">
           <Link to="/">Viajero Mundial</Link>
@@ -115,7 +115,7 @@ const Partidos = () => {
       <footer>
         <p>© 2026 Viajero Mundial</p>
       </footer>
-    </>
+    </div>
   );
 };
 

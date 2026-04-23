@@ -8,10 +8,11 @@ color:#111;
 
 /* CONTENEDOR GENERAL */
 
-body > *{
-max-width:1200px;
-margin-left:auto;
-margin-right:auto;
+/* Limitamos solo el contenedor de inicio y no toda la app de React */
+.inicio-container {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 
