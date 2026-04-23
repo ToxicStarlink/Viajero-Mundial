@@ -7,6 +7,7 @@ import Boletos from "./pages/boletos";
 import Registro from "./pages/registro";
 import Compra from "./pages/compra";
 import Guia from "./pages/guia";
+import Perfil from "./pages/perfil";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/boletos/:id" element={<Boletos />} />
         <Route path="/compra" element={<Compra />} />
         <Route path="/guia" element={<Guia />} />
+        <Route path="/perfil" element={<Perfil />} />
       </Routes>
     </Router>
   );
