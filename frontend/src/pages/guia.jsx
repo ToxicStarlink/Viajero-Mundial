@@ -1,18 +1,15 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-// IMPORTANTE: Importamos guia.css para los estilos correctos
 import "../CSS/guia.css";
 
 const Guia = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
 
-  // Función para recrear el onClick="verPais('...')" que tenías en PHP
+
   const verPais = (pais) => {
     console.log(`Explorando destinos en: ${pais}`);
-    // Aquí puedes agregar tu navigate para ir a una página específica
-    // navigate(`/guia/${pais}`);
   };
 
   return (
@@ -34,7 +31,6 @@ const Guia = () => {
         </div>
       </header>
 
-      {/* Recreamos la estructura exacta del HTML de tu PHP */}
       <section className="guia">
         <h1>Guía Turística del Mundial 2026</h1>
         <p className="subtitulo">
@@ -46,7 +42,6 @@ const Guia = () => {
 
           {/* MEXICO */}
           <div className="guia-card">
-            {/* Si la imagen no carga, asegúrate de que exista en tu carpeta /IMG/ */}
             <img src="/IMG/mexico.jpg" alt="México" />
             <div className="guia-info">
               <h3>🇲🇽 México</h3>

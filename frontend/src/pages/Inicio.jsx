@@ -4,10 +4,8 @@ import { Link } from "react-router-dom";
 import "../CSS/inicio.css";
 
 const Inicio = () => {
-  // Simulador del $_SESSION de PHP. Cambia a true para ver "Mi perfil"
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  // Arreglo con las imágenes del estadio que van a rotar
   const heroImages = [
     "/IMG/Estadio1.jpg",
     "/IMG/Estadio2.jpg",
@@ -20,7 +18,7 @@ const Inicio = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImage((prevImage) => (prevImage + 1) % heroImages.length);
-    }, 4000); // Cambia de imagen cada 4 segundos
+    }, 4000); 
     return () => clearInterval(interval);
   }, []);
 
@@ -51,7 +49,6 @@ const Inicio = () => {
     },
   ];
 
-  // Datos actualizados según el PHP
   const proximosPartidos = [
     {
       id: 4,
@@ -85,7 +82,6 @@ const Inicio = () => {
             <Link to="/guia">Guía Turística</Link>
           </nav>
 
-          {/* Condicional que reemplaza el bloque de sesión de PHP */}
           {isLoggedIn ? (
             <Link to="/perfil" className="login">Mi perfil</Link>
           ) : (
@@ -135,7 +131,6 @@ const Inicio = () => {
                 <h3>{partido.equipos}</h3>
                 <p>{partido.fecha}</p>
               </div>
-              {/* Tooltip agregado */}
               <div className="tooltip">La informacion no ha sido dada</div>
             </div>
           ))}
@@ -186,7 +181,6 @@ const Inicio = () => {
             </div>
           </div>
           
-          {/* Imagen de la sección de beneficios agregada */}
           <div className="beneficios-imagen">
             <img src="/IMG/partido7.jpg" alt="Beneficios" />
           </div>

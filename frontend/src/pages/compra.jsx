@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate, Link } from "react-router-dom";
 
-// 1. IMPORTANTE: Cambiamos la importación al CSS correcto de compras
 import "../CSS/compra.css";
 
 const Compra = () => {
@@ -20,7 +19,6 @@ const Compra = () => {
       return;
     }
 
-    // Función para renderizar los botones una vez que PayPal cargó
     const renderPayPalButtons = () => {
       if (window.paypal && paypalRef.current && paypalRef.current.children.length === 0) {
         window.paypal.Buttons({
@@ -55,7 +53,6 @@ const Compra = () => {
       }
     };
 
-    // Si no existe PayPal en la ventana, inyectamos el script dinámicamente
     if (!window.paypal) {
       const script = document.createElement("script");
       // IMPORTANTE: Si tienes un Client ID real, reemplaza la palabra "test" por tu ID.
@@ -93,7 +90,6 @@ const Compra = () => {
         </div>
       </header>
 
-      {/* 2. Recreamos la estructura HTML exacta del PHP */}
       <section className="compra">
         <div className="contenedor-compra">
           
@@ -111,7 +107,6 @@ const Compra = () => {
             
             <p className="precio"><b>Total:</b> ${total}</p>
 
-            {/* Contenedor de PayPal integrado debajo del texto como en PHP */}
             <div id="paypal-section" style={{ marginTop: "24px" }}>
               <div ref={paypalRef} id="paypal-button-container"></div>
               {error && <p id="paypal-message" style={{ color: "#b22222", marginTop: "12px" }}>{error}</p>}

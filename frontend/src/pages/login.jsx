@@ -1,11 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-// Asegúrate de tener este archivo CSS en tu carpeta src/CSS
 import "../CSS/login.css"; 
 
 const Login = () => {
-  // Función para manejar el envío del formulario temporalmente
   const handleSubmit = (e) => {
     e.preventDefault(); // Evita que la página se recargue
     console.log("Simulando inicio de sesión...");

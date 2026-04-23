@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 
-// 1. IMPORTANTE: Cambiamos a boletos.css
 import "../CSS/boletos.css"; 
 
 const Boletos = () => {
@@ -10,7 +9,7 @@ const Boletos = () => {
   const [asientosSeleccionados, setAsientosSeleccionados] = useState([]);
   const { id } = useParams();
   const navigate = useNavigate();
-  const precioPorBoleto = 150; // $150 USD por boleto
+  const precioPorBoleto = 150;
 
   const listaPartidos = [
     { id: "P001", equipos: "México vs España", lugar: "Estadio Azteca - Ciudad de México", fecha: "29 Junio 2026 · 18:00" },
@@ -36,10 +35,9 @@ const Boletos = () => {
     );
   }
 
-  // 2. Agregamos la función de los clicks que tenías en PHP
   const comprarZona = (zona) => {
     setZonaSeleccionada(zona);
-    setAsientosSeleccionados([]); // Reinicia los asientos al cambiar de zona
+    setAsientosSeleccionados([])
   };
 
   const toggleAsiento = (asiento) => {
@@ -79,7 +77,6 @@ const Boletos = () => {
         </div>
       </header>
 
-      {/* 3. Recreamos la estructura de información e imagen igual a PHP */}
       <section className="info-partido">
         <h1>{partido.equipos}</h1>
         <p className="estadio">{partido.lugar}</p>
