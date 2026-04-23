@@ -20,38 +20,52 @@ const Compra = () => {
       return;
     }
 
-    if (window.paypal && paypalRef.current && paypalRef.current.children.length === 0) {
-      window.paypal.Buttons({
-        style: {
-          layout: "vertical",
-          color: "gold",
-          shape: "rect",
-          label: "paypal"
-        },
-        createOrder(data, actions) {
-          return actions.order.create({
-            purchase_units: [{
-              amount: {
-                currency_code: "USD",
-                value: total.toFixed(2)
-              },
-              description: `Boletos: ${asientosSeleccionados.join(", ")}`
-            }]
-          });
-        },
-        onApprove(data, actions) {
-          return actions.order.capture().then(details => {
-            alert(`Pago completado con éxito. Gracias, ${details.payer.name.given_name}!`);
-            navigate("/"); 
-          });
-        },
-        onError(err) {
-          console.error(err);
-          setError("Ocurrió un error con PayPal. Revisa la consola para más detalles.");
-        }
-      }).render(paypalRef.current);
-    } else if (!window.paypal) {
-      setError("No se pudo cargar PayPal. Asegúrate de agregar el script en tu index.html.");
+    // Función para renderizar los botones una vez que PayPal cargó
+    const renderPayPalButtons = () => {
+      if (window.paypal && paypalRef.current && paypalRef.current.children.length === 0) {
+        window.paypal.Buttons({
+          style: {
+            layout: "vertical",
+            color: "gold",
+            shape: "rect",
+            label: "paypal"
+          },
+          createOrder(data, actions) {
+            return actions.order.create({
+              purchase_units: [{
+                amount: {
+                  currency_code: "USD",
+                  value: total.toFixed(2)
+                },
+                description: `Boletos: ${asientosSeleccionados.join(", ")}`
+              }]
+            });
+          },
+          onApprove(data, actions) {
+            return actions.order.capture().then(details => {
+              alert(`Pago completado con éxito. Gracias, ${details.payer.name.given_name}!`);
+              navigate("/"); 
+            });
+          },
+          onError(err) {
+            console.error(err);
+            setError("Ocurrió un error con PayPal. Revisa la consola para más detalles.");
+          }
+        }).render(paypalRef.current);
+      }
+    };
+
+    // Si no existe PayPal en la ventana, inyectamos el script dinámicamente
+    if (!window.paypal) {
+      const script = document.createElement("script");
+      // IMPORTANTE: Si tienes un Client ID real, reemplaza la palabra "test" por tu ID.
+      script.src = "https://www.paypal.com/sdk/js?client-id=test&currency=USD";
+      script.async = true;
+      script.onload = () => renderPayPalButtons();
+      script.onerror = () => setError("No se pudo cargar la pasarela de PayPal.");
+      document.body.appendChild(script);
+    } else {
+      renderPayPalButtons();
     }
   }, [asientosSeleccionados, navigate, total]);
 
