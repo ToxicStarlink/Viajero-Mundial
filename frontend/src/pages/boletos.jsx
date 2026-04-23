@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 
 // 1. IMPORTANTE: Cambiamos a boletos.css
 import "../CSS/boletos.css"; 
@@ -9,6 +9,7 @@ const Boletos = () => {
   const [zonaSeleccionada, setZonaSeleccionada] = useState(null);
   const [asientosSeleccionados, setAsientosSeleccionados] = useState([]);
   const { id } = useParams();
+  const navigate = useNavigate();
   const precioPorBoleto = 150; // $150 USD por boleto
 
   const listaPartidos = [
@@ -47,6 +48,16 @@ const Boletos = () => {
     } else {
       setAsientosSeleccionados([...asientosSeleccionados, asiento]);
     }
+  };
+
+  const procederAlPago = () => {
+    navigate("/compra", {
+      state: {
+        asientosSeleccionados,
+        total: asientosSeleccionados.length * precioPorBoleto,
+        partido
+      }
+    });
   };
 
   return (
@@ -132,7 +143,7 @@ const Boletos = () => {
                 Total a pagar: ${asientosSeleccionados.length * precioPorBoleto} USD
               </p>
               
-              <button className="login" disabled={asientosSeleccionados.length === 0} style={{ border: "none", fontSize: "16px", cursor: asientosSeleccionados.length === 0 ? "not-allowed" : "pointer", padding: "14px 28px", opacity: asientosSeleccionados.length === 0 ? 0.5 : 1, width: "100%", maxWidth: "350px" }}>
+              <button onClick={procederAlPago} className="login" disabled={asientosSeleccionados.length === 0} style={{ border: "none", fontSize: "16px", cursor: asientosSeleccionados.length === 0 ? "not-allowed" : "pointer", padding: "14px 28px", opacity: asientosSeleccionados.length === 0 ? 0.5 : 1, width: "100%", maxWidth: "350px" }}>
                 Comprar boletos
               </button>
             </div>
