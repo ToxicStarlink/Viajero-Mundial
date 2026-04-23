@@ -119,9 +119,113 @@ const Inicio = () => {
               sin complicaciones, garantizando siempre la autenticidad de cada
               boleto.
             </p>
+            <div class="beneficio">
+              <h3>Compra segura</h3>
+
+              <p>
+                Nuestro sistema utiliza protocolos avanzados de seguridad
+                digital y verificación de pagos, permitiendo que cada
+                transacción sea protegida mediante tecnologías modernas de
+                encriptación. Miles de aficionados ya confían en nuestra
+                plataforma para adquirir sus entradas sin riesgos.
+              </p>
+            </div>
+
+            <div class="beneficio">
+              <h3>Boletos verificados</h3>
+
+              <p>
+                Cada boleto disponible en nuestra plataforma pasa por un proceso
+                de validación para asegurar su autenticidad. Trabajamos con
+                distribuidores confiables y proveedores autorizados para
+                garantizar que los aficionados reciban entradas legítimas para
+                cada partido del mundial.
+              </p>
+            </div>
+            <div class="beneficio">
+              <h3>Entrega digital inmediata</h3>
+
+              <p>
+                Una vez completada la compra, los boletos son enviados
+                digitalmente de forma inmediata al correo electrónico del
+                comprador. Esto permite acceder a los partidos sin retrasos y
+                sin necesidad de recoger entradas físicas.
+              </p>
+            </div>
           </div>
         </div>
       </section>
+
+<section class="noticias">
+
+<h2>Noticias del mundial</h2>
+
+<p class="subtitulo"></p>
+
+<div class="contenedor-noticias">
+
+
+<div class="noticia-card">
+
+<img src="/IMG/info1.jpg"/>
+
+<div class="noticia-info">
+
+<h3>Se anuncian nuevas sedes para el Mundial 2030</h3>
+
+<p>
+La FIFA anunció oficialmente nuevas sedes que formarán parte del mundial,
+expandiendo la lista de ciudades anfitrionas y aumentando la capacidad
+para recibir a millones de aficionados.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="noticia-card">
+
+<img src="/IMG/info2.jpg"/>
+
+<div class="noticia-info">
+
+<h3>La FIFA revela el balón oficial del torneo</h3>
+
+<p>
+El nuevo balón oficial del torneo ha sido presentado con un diseño
+innovador inspirado en la velocidad del juego moderno y la tecnología
+de seguimiento utilizada durante los partidos.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="noticia-card">
+    
+<img src="/IMG/info3.jpg"/>
+
+<div class="noticia-info">
+
+<h3>Los estadios que recibirán la final</h3>
+
+<p>
+Se han confirmado los estadios que competirán por albergar la gran final
+del mundial, destacando instalaciones modernas y recintos históricos
+del fútbol internacional.
+</p>
+
+</div>
+
+</div>
+
+
+</div>
+
+</section>
+
 
       <footer>
         <p>© 2026 Viajero Mundial</p>
