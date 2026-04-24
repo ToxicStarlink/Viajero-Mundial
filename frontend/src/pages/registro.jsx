@@ -13,9 +13,9 @@ const Registro = () => {
     password: "",
     confirmar: "",
   });
-  
+
   const [error, setError] = useState("");
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({
@@ -24,11 +24,18 @@ const Registro = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const { nombre, apellido, usuario, correo, password, confirmar } = formData;
 
-    if (!nombre || !apellido || !usuario || !correo || !password || !confirmar) {
+    if (
+      !nombre ||
+      !apellido ||
+      !usuario ||
+      !correo ||
+      !password ||
+      !confirmar
+    ) {
       setError("Todos los campos son obligatorios.");
       return;
     }
@@ -38,11 +45,26 @@ const Registro = () => {
       return;
     }
 
-    setError("");
-    console.log("Datos listos para enviar al backend:", formData);
-    alert("¡Registro exitoso! Ahora puedes iniciar sesión.");
-    
-    navigate("/login");
+    try {
+      setError(""); 
+
+      const res = await axios.post("http://localhost:3000/api/registro", {
+        nombre: formData.nombre,
+        apellido: formData.apellido,
+        correo: formData.correo,
+        contraena: formData.password, 
+      });
+
+      console.log("Respuesta del servidor:", res.data);
+
+      alert("¡Registro exitoso! Ya puedes iniciar sesión.");
+      
+      navigate("/login");
+    } catch (err) {
+      const mensajeError =
+        err.response?.data?.error || "Error al conectar con el servidor";
+      setError(mensajeError);
+    }
   };
 
   return (
@@ -55,18 +77,70 @@ const Registro = () => {
         <h2>Crear cuenta</h2>
 
         {error && (
-          <div style={{ background: "#f8d7da", color: "#721c24", padding: "10px 14px", borderRadius: "6px", marginBottom: "16px", border: "1px solid #f5c6cb", fontSize: "14px" }}>
+          <div
+            style={{
+              background: "#f8d7da",
+              color: "#721c24",
+              padding: "10px 14px",
+              borderRadius: "6px",
+              marginBottom: "16px",
+              border: "1px solid #f5c6cb",
+              fontSize: "14px",
+            }}
+          >
             {error}
           </div>
         )}
 
         <form onSubmit={handleSubmit}>
-          <input type="text" name="nombre" placeholder="Nombre" value={formData.nombre} onChange={handleChange} required />
-          <input type="text" name="apellido" placeholder="Apellido" value={formData.apellido} onChange={handleChange} required />
-          <input type="text" name="usuario" placeholder="Usuario" value={formData.usuario} onChange={handleChange} required />
-          <input type="email" name="correo" placeholder="Correo electrónico" value={formData.correo} onChange={handleChange} required />
-          <input type="password" name="password" placeholder="Contraseña" value={formData.password} onChange={handleChange} required />
-          <input type="password" name="confirmar" placeholder="Confirmar contraseña" value={formData.confirmar} onChange={handleChange} required />
+          <input
+            type="text"
+            name="nombre"
+            placeholder="Nombre"
+            value={formData.nombre}
+            onChange={handleChange}
+            required
+          />
+          <input
+            type="text"
+            name="apellido"
+            placeholder="Apellido"
+            value={formData.apellido}
+            onChange={handleChange}
+            required
+          />
+          <input
+            type="text"
+            name="usuario"
+            placeholder="Usuario"
+            value={formData.usuario}
+            onChange={handleChange}
+            required
+          />
+          <input
+            type="email"
+            name="correo"
+            placeholder="Correo electrónico"
+            value={formData.correo}
+            onChange={handleChange}
+            required
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="Contraseña"
+            value={formData.password}
+            onChange={handleChange}
+            required
+          />
+          <input
+            type="password"
+            name="confirmar"
+            placeholder="Confirmar contraseña"
+            value={formData.confirmar}
+            onChange={handleChange}
+            required
+          />
 
           <button type="submit">Registrarse</button>
         </form>
