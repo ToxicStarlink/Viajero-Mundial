@@ -146,29 +146,6 @@ app.post("/api/comprar-boletos", async (req, res) => {
 });
 
 
-// boletos perfil uwu
-app.get("/api/usuarios/:id/boletos", async (req, res) => {
-  const { id } = req.params;
-  
-  try {
-    const boletos = await prisma.boleto.findMany({
-      where: { 
-        fk_usuario: parseInt(id) 
-      },
-      include: {
-        partido: true,
-        estadio_zona: true 
-      }
-    });
-
-    res.json(boletos);
-  } catch (error) {
-    console.error("Error obteniendo boletos:", error);
-    res.status(500).json({ error: "Error al obtener historial de boletos" });
-  }
-});
-
-
 app.listen(PORT, () => {
   console.log(`Servidor listo en http://localhost:${PORT}`);
 });
