@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+
 import "../CSS/login.css";
 
 const Registro = () => {
@@ -13,7 +15,7 @@ const Registro = () => {
   });
   
   const [error, setError] = useState("");
-  const navigate = useNavigate(); // Hook para redireccionar al usuario
+  const navigate = useNavigate(); 
 
   const handleChange = (e) => {
     setFormData({

@@ -1,98 +1,56 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
+import Navbar from "../components/Navbar";
 import "../CSS/inicio.css";
 
 const Inicio = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  //Hero de imagenes q cambian
   const heroImages = [
     "/IMG/Estadio1.jpg",
     "/IMG/Estadio2.jpg",
     "/IMG/Estadio3.jpg",
     "/IMG/Estadio4.jpg",
-    "/IMG/Estadio5.jpg"
+    "/IMG/Estadio5.jpg",
   ];
   const [currentImage, setCurrentImage] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImage((prevImage) => (prevImage + 1) % heroImages.length);
-    }, 4000); 
+    }, 4000);
     return () => clearInterval(interval);
   }, []);
 
-  const partidosDestacados = [
-    {
-      id: 1,
-      dataPartido: "mexico-brasil",
-      equipos: "Brasil vs Francia",
-      lugar: "Ontario · Canadá",
-      precio: "$120 USD",
-      img: "/IMG/partido1.jpg",
-    },
-    {
-      id: 2,
-      dataPartido: "argentina-francia",
-      equipos: "Uruguay vs Colombia",
-      lugar: "Florida · USA",
-      precio: "$150 USD",
-      img: "/IMG/partido2.jpg",
-    },
-    {
-      id: 3,
-      dataPartido: "espana-alemania",
-      equipos: "Argentina vs Alemania",
-      lugar: "California · USA",
-      precio: "$130 USD",
-      img: "/IMG/partido3.jpg",
-    },
-  ];
+  //Datos de partidos destacados
+  const [partidosDestacados, setPartidosDestacados] = useState([]);
+  const [proximosPartidos, setProximosPartidos] = useState([]);
 
-  const proximosPartidos = [
-    {
-      id: 4,
-      equipos: "Argentina vs Suiza",
-      fecha: "10 Julio",
-      img: "/IMG/partido4.jpg",
-    },
-    {
-      id: 5,
-      equipos: "Brasil vs Inglaterra",
-      fecha: "16 Julio",
-      img: "/IMG/partido5.jpg",
-    },
-    {
-      id: 6,
-      equipos: "México vs Brasil",
-      fecha: "12 Julio",
-      img: "/IMG/partido6.jpg",
-    },
-  ];
+  //conexion
+  useEffect(() => {
+    const obtenerDatos = async () => {
+      try {
+        const res = await axios.get("http://localhost:3000/api/partidos");
+
+        setPartidosDestacados(res.data.slice(0, 3));
+        setProximosPartidos(res.data.slice(3, 6));
+      } catch (error) {
+        console.error("Error al traer partidos:", error);
+      }
+    };
+    obtenerDatos();
+  }, []);
 
   return (
     <div className="inicio-container">
-      <header className="header">
-        <div className="logo">
-          <Link to="/">Viajero Mundial</Link>
-        </div>
-        <div className="menu-derecha">
-          <nav className="nav">
-            <Link to="/partidos">Partidos</Link>
-            <Link to="/guia">Guía Turística</Link>
-          </nav>
+      <Navbar isLoggedIn={isLoggedIn} />
 
-          {isLoggedIn ? (
-            <Link to="/perfil" className="login">Mi perfil</Link>
-          ) : (
-            <Link to="/login" className="login">Iniciar sesión</Link>
-          )}
-        </div>
-      </header>
-
-      <section 
-        className="hero" 
-        id="hero" 
+      <section
+        className="hero"
+        id="hero"
         style={{ backgroundImage: `url('${heroImages[currentImage]}')` }}
       >
         <div className="hero-content">
@@ -107,13 +65,17 @@ const Inicio = () => {
       <section className="eventos">
         <h2>Partidos destacados</h2>
         <div className="contenedor-partidos">
-          {partidosDestacados.map((partido) => (
-            <div className="card" data-partido={partido.dataPartido} key={partido.id}>
-              <img src={partido.img} alt={partido.equipos} />
+          {partidosDestacados.map((p) => (
+            <div className="card" key={p.id}>
+              <img src={`/IMG/partido${p.id}.jpg`} alt="Partido" />
               <div className="card-info">
-                <h3>{partido.equipos}</h3>
-                <p>{partido.lugar}</p>
-                <span>{partido.precio}</span>
+                <h3>
+                  {p.equipo1.nombre} vs {p.equipo2.nombre}
+                </h3>
+                <p>
+                  {p.estadio.nombre} · {p.estadio.ciudad.nombre}
+                </p>
+                <span>Boletos Disponibles</span>
               </div>
             </div>
           ))}
@@ -123,19 +85,26 @@ const Inicio = () => {
       <section className="proximos">
         <h2>Próximos partidos del mundial</h2>
         <div className="contenedor-proximos">
-          {proximosPartidos.map((partido) => (
-            <div className="proximo-card" key={partido.id}>
-              <img src={partido.img} alt={partido.equipos} />
+          {proximosPartidos.map((p) => (
+            <div className="proximo-card" key={p.id}>
+              <img src={`/IMG/partido${p.id}.jpg`} alt="Partido" />
               <div className="proximo-info">
-                <h3>{partido.equipos}</h3>
-                <p>{partido.fecha}</p>
+                <h3>
+                  {p.equipo1.nombre} vs {p.equipo2.nombre}
+                </h3>
+                <p>
+                  {new Date(p.fecha).toLocaleDateString("es-MX", {
+                    day: "numeric",
+                    month: "long",
+                  })}
+                </p>
               </div>
-              <div className="tooltip">La informacion no ha sido dada</div>
+              <div className="tooltip">Más información pronto</div>
             </div>
           ))}
         </div>
       </section>
-
+      
       <section className="beneficios">
         <div className="beneficios-contenedor">
           <div className="beneficios-texto">
@@ -179,7 +148,7 @@ const Inicio = () => {
               </p>
             </div>
           </div>
-          
+
           <div className="beneficios-imagen">
             <img src="/IMG/partido7.jpg" alt="Beneficios" />
           </div>
@@ -195,9 +164,9 @@ const Inicio = () => {
             <div className="noticia-info">
               <h3>Se anuncian nuevas sedes para el Mundial 2030</h3>
               <p>
-                La FIFA anunció oficialmente nuevas sedes que formarán parte del mundial,
-                expandiendo la lista de ciudades anfitrionas y aumentando la capacidad
-                para recibir a millones de aficionados.
+                La FIFA anunció oficialmente nuevas sedes que formarán parte del
+                mundial, expandiendo la lista de ciudades anfitrionas y
+                aumentando la capacidad para recibir a millones de aficionados.
               </p>
             </div>
           </div>
@@ -207,9 +176,9 @@ const Inicio = () => {
             <div className="noticia-info">
               <h3>La FIFA revela el balón oficial del torneo</h3>
               <p>
-                El nuevo balón oficial del torneo ha sido presentado con un diseño
-                innovador inspirado en la velocidad del juego moderno y la tecnología
-                de seguimiento utilizada durante los partidos.
+                El nuevo balón oficial del torneo ha sido presentado con un
+                diseño innovador inspirado en la velocidad del juego moderno y
+                la tecnología de seguimiento utilizada durante los partidos.
               </p>
             </div>
           </div>
@@ -219,9 +188,9 @@ const Inicio = () => {
             <div className="noticia-info">
               <h3>Los estadios que recibirán la final</h3>
               <p>
-                Se han confirmado los estadios que competirán por albergar la gran final
-                del mundial, destacando instalaciones modernas y recintos históricos
-                del fútbol internacional.
+                Se han confirmado los estadios que competirán por albergar la
+                gran final del mundial, destacando instalaciones modernas y
+                recintos históricos del fútbol internacional.
               </p>
             </div>
           </div>
