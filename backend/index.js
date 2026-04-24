@@ -27,6 +27,28 @@ app.get('/api/partidos', async (req, res) => {
 });
 
 
+//registro 
+app.post('/api/registro', async (req, res) => {
+  const { nombre, apellido, correo, contraena } = req.body;
+
+  try {
+    const nuevoUsuario = await prisma.usuario.create({
+      data: {
+        nombre: nombre,
+        apellido: apellido,
+        correo: correo,
+        contraena: contraena,
+      },
+    });
+    res.status(201).json({ mensaje: "Usuario creado", usuario: nuevoUsuario });
+  } catch (error) {
+    if (error.code === 'P2002') {
+      res.status(400).json({ error: "Este correo ya está registrado." });
+    } else {
+      res.status(500).json({ error: "Error interno del servidor." });
+    }
+  }
+});
 
 app.listen(PORT, () => {
   console.log(`Servidor listo en http://localhost:${PORT}`);
