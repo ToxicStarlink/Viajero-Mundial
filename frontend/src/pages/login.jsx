@@ -1,12 +1,36 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
-import "../CSS/login.css"; 
+import axios from "axios";
+import "../CSS/login.css";
 
 const Login = () => {
-  const handleSubmit = (e) => {
+  const [formData, setFormData] = useState({ correo: "", password: "" });
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Simulando inicio de sesión...");
+    try {
+      setError("");
+      const res = await axios.post("http://localhost:3000/api/login", {
+        correo: formData.correo,
+        contraena: formData.password,
+      });
+
+      console.log("Login exitoso:", res.data);
+
+      localStorage.setItem("usuario", JSON.stringify(res.data.usuario));
+
+      window.location.href = "/";
+      
+    } catch (err) {
+      setError(err.response?.data?.error || "Error al iniciar sesión");
+    }
   };
 
   return (
@@ -18,9 +42,39 @@ const Login = () => {
       <div className="login-container">
         <h2>Inicio de sesión</h2>
 
+        {error && (
+          <div
+            style={{
+              background: "#f8d7da",
+              color: "#721c24",
+              padding: "10px",
+              borderRadius: "6px",
+              marginBottom: "16px",
+              border: "1px solid #f5c6cb",
+              fontSize: "14px",
+            }}
+          >
+            {error}
+          </div>
+        )}
+
         <form onSubmit={handleSubmit}>
-          <input type="email" name="correo" placeholder="Correo electrónico" required autoComplete="email" />
-          <input type="password" name="password" placeholder="Contraseña" required autoComplete="current-password" />
+          <input
+            type="email"
+            name="correo"
+            placeholder="Correo electrónico"
+            value={formData.correo}
+            onChange={handleChange}
+            required
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="Contraseña"
+            value={formData.password}
+            onChange={handleChange}
+            required
+          />
           <button type="submit">Entrar</button>
         </form>
 

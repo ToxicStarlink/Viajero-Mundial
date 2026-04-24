@@ -6,7 +6,6 @@ import Navbar from "../components/Navbar";
 import "../CSS/inicio.css";
 
 const Inicio = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   //Hero de imagenes q cambian
   const heroImages = [
@@ -28,7 +27,7 @@ const Inicio = () => {
   //Datos de partidos destacados
   const [partidosDestacados, setPartidosDestacados] = useState([]);
   const [proximosPartidos, setProximosPartidos] = useState([]);
-
+console.log("¿Qué hay en el disco?:", localStorage.getItem("usuario"));
   //conexion
   useEffect(() => {
     const obtenerDatos = async () => {
@@ -46,7 +45,7 @@ const Inicio = () => {
 
   return (
     <div className="inicio-container">
-      <Navbar isLoggedIn={isLoggedIn} />
+      <Navbar />
 
       <section
         className="hero"
