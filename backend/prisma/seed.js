@@ -198,7 +198,7 @@ async function main() {
     },
   });
 
-  // 9. USUARIOS (Tus 2 usuarios iniciales)
+  // 9. USUARIOS 
  await prisma.usuario.upsert({
     where: { correo: "Mikasa@gmail.com" },
     update: {},
@@ -206,7 +206,7 @@ async function main() {
       nombre: "mika",
       apellido: "mika",
       correo: "Mikasa@gmail.com",
-      contraena: "mika", // Recuerda que en producción esto va hasheado
+      contraena: "mika", 
     },
   });
 
