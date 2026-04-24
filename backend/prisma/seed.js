@@ -48,7 +48,7 @@ async function main() {
   const tco = await prisma.equipos.create({ data: { nombre: 'Colombia', fk_pais: usa.id } });
 
   // 8. PARTIDOS
-  await prisma.partido.create({
+  const partido1 = await prisma.partido.create({
     data: {
       nombre: 'Brasil vs Francia',
       fecha: new Date('2026-06-11T20:00:00Z'),
@@ -113,17 +113,21 @@ async function main() {
   });
 
   // 9. USUARIOS (Tus 2 usuarios iniciales)
-  const user1 = await prisma.usuario.create({
-    data: {
+  const user1 = await prisma.usuario.upsert({
+    where: { correo: 'anonimos@ejemplo.com' },
+    update: {},
+    create: {
       nombre: 'Anonimos',
       apellido: 'none',
       correo: 'anonimos@ejemplo.com',
-      contraena: '123456' 
+      contraena: '123456'
     }
   });
 
-  const user2 = await prisma.usuario.create({
-    data: {
+  const user2 = await prisma.usuario.upsert({
+    where: { correo: 'juan@ejemplo.com' },
+    update: {},
+    create: {
       nombre: 'Juan',
       apellido: 'Perez',
       correo: 'juan@ejemplo.com',
