@@ -1,60 +1,44 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import Navbar from "../components/Navbar";
 import "../CSS/inicio.css";
 
 const Perfil = () => {
   const navigate = useNavigate();
   
+  const [usuario, setUsuario] = useState(null);
+  const [historialCompras, setHistorialCompras] = useState([]);
 
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
-
-  const handleLogout = () => {
-
-    setIsLoggedIn(false);
-    navigate("/");
-  };
-
-  const usuario = {
-    nombre: "Nombrerandom",
-    apellido: "Apellidorandom",
-    correo: "correorandom@gmail.com",
-    usuario: "usariorandom"
-  };
-
-  // Historial de boletos comprados ficticio
-  const historialCompras = [
-    {
-      id: "C001",
-      equipos: "México vs España",
-      fecha: "29 Junio 2026 · 18:00",
-      asientos: "A1, A2",
-      total: "$300 USD",
-      img: "/IMG/partido6.jpg"
-    },
-    {
-      id: "C002",
-      equipos: "Argentina vs Alemania",
-      fecha: "14 Junio 2026 · 18:00",
-      asientos: "E1",
-      total: "$150 USD",
-      img: "/IMG/partido3.jpg"
+  useEffect(() => {
+    // Obtener usuario del localStorage
+    const usuarioGuardado = localStorage.getItem("usuario");
+    if (!usuarioGuardado) {
+      navigate("/login");
+      return;
     }
-  ];
+
+    const userObj = JSON.parse(usuarioGuardado);
+    setUsuario(userObj);
+
+    // Extraer boletos desde la base de datos
+    const obtenerHistorial = async () => {
+      try {
+        const res = await axios.get(`http://localhost:3000/api/usuarios/${userObj.id_usuario}/boletos`);
+        setHistorialCompras(res.data);
+      } catch (error) {
+        console.error("Error al traer historial de compras:", error);
+      }
+    };
+
+    obtenerHistorial();
+  }, [navigate]);
+
+  if (!usuario) return null;
 
   return (
     <div className="inicio-container">
-      <header className="header">
-        <div className="logo"><Link to="/">Viajero Mundial</Link></div>
-        <div className="menu-derecha">
-          <nav className="nav">
-            <Link to="/partidos">Partidos</Link>
-            <Link to="/guia">Guía Turística</Link>
-          </nav>
-          <button onClick={handleLogout} className="login" style={{ cursor: "pointer", border: "none", fontSize: "16px", fontFamily: "inherit" }}>
-            Cerrar sesión
-          </button>
-        </div>
-      </header>
+      <Navbar />
 
       <section className="perfil" style={{ minHeight: "60vh" }}>
         <h2>Mi Perfil</h2>
@@ -63,24 +47,27 @@ const Perfil = () => {
           <div className="perfil-datos">
             <h3>Datos Personales</h3>
             <p><strong>Nombre:</strong> {usuario.nombre} {usuario.apellido}</p>
-            <p><strong>Usuario:</strong> {usuario.usuario}</p>
             <p><strong>Correo:</strong> {usuario.correo}</p>
           </div>
 
           <div style={{ flex: 1 }}>
             <h3 style={{ margin: "0 0 20px 0" }}>Historial de boletos</h3>
             <div className="contenedor-compras">
-              {historialCompras.map((compra) => (
-                <div className="compra-card" key={compra.id}>
-                  <img src={compra.img} alt={compra.equipos} />
+              {historialCompras.length > 0 ? (
+                historialCompras.map((compra) => (
+                <div className="compra-card" key={compra.id || compra.asiento}>
+                  <img src={compra.img || "/IMG/info3.jpg"} alt={compra.partido?.nombre || "Partido"} />
                   <div className="compra-info">
-                    <h3>{compra.equipos}</h3>
-                    <p>{compra.fecha}</p>
-                    <p style={{ margin: "6px 0", color: "#333" }}>Asientos: {compra.asientos}</p>
-                    <span>{compra.total}</span>
+                    <h3>{compra.partido?.nombre || "Partido"}</h3>
+                    <p>{compra.partido?.fecha ? new Date(compra.partido.fecha).toLocaleDateString("es-MX") : "Fecha no disponible"}</p>
+                    <p style={{ margin: "6px 0", color: "#333" }}>Asiento: {compra.asiento}</p>
+                    <span>{compra.precio ? `$${compra.precio} USD` : "Pagado"}</span>
                   </div>
                 </div>
-              ))}
+                ))
+              ) : (
+                <p>No has comprado boletos aún.</p>
+              )}
             </div>
           </div>
         </div>
