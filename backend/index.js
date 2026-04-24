@@ -23,11 +23,9 @@ app.get('/api/partidos', async (req, res) => {
       estadio: { include: { ciudad: true } }
     }
   });
-  res.j;
+  res.json(partidos);
 });
 
-
-son(partidos)
 
 
 app.listen(PORT, () => {
