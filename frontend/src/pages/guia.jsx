@@ -1,35 +1,41 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import Navbar from "../components/Navbar";
 
 import "../CSS/guia.css";
 
 const Guia = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [paises, setPaises] = useState([]);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const obtenerDatos = async () => {
+      try {
+        const res = await axios.get("http://localhost:3000/api/paises");
+        setPaises(res.data);
+      } catch (error) {
+        alert("Error al cargar los destinos.");
+        console.error("Error al traer países:", error);
+      }
+    };
+    obtenerDatos();
+  }, []);
 
   const verPais = (pais) => {
-    console.log(`Explorando destinos en: ${pais}`);
+    console.log(`Explorando destinos en: ${pais.nombre}`);
+  };
+
+  const obtenerImagen = (nombre) => {
+    if (nombre.toLowerCase().includes("méxico") || nombre.toLowerCase().includes("mexico")) return "/IMG/mexico.jpg";
+    if (nombre.toLowerCase().includes("usa") || nombre.toLowerCase().includes("estados unidos")) return "/IMG/usa.jpg";
+    if (nombre.toLowerCase().includes("canadá") || nombre.toLowerCase().includes("canada")) return "/IMG/canada.jpg";
+    return "/IMG/info1.jpg";
   };
 
   return (
-    <>
-      <header className="header">
-        <div className="logo">
-          <Link to="/">Viajero Mundial</Link>
-        </div>
-        <div className="menu-derecha">
-          <nav className="nav">
-            <Link to="/partidos">Partidos</Link>
-            <Link to="/guia">Guía Turística</Link>
-          </nav>
-          {isLoggedIn ? (
-            <Link to="/perfil" className="login">Mi perfil</Link>
-          ) : (
-            <Link to="/login" className="login">Iniciar sesión</Link>
-          )}
-        </div>
-      </header>
+    <div className="guia-container">
+      <Navbar />
 
       <section className="guia">
         <h1>Guía Turística del Mundial 2026</h1>
@@ -40,72 +46,45 @@ const Guia = () => {
 
         <div className="contenedor-guia">
 
-          {/* MEXICO */}
-          <div className="guia-card">
-            <img src="/IMG/mexico.jpg" alt="México" />
-            <div className="guia-info">
-              <h3>🇲🇽 México</h3>
-              <p>
-                México será sede histórica del Mundial 2026.
-                Ofrece cultura, gastronomía y estadios legendarios.
-              </p>
-              <ul>
-                <li>Estadio Azteca — Ciudad de México</li>
-                <li>Estadio BBVA — Monterrey</li>
-                <li>Estadio Akron — Guadalajara</li>
-              </ul>
-              <button onClick={() => verPais('mexico')}>
-                Explorar destinos
-              </button>
-            </div>
-          </div>
-
-          {/* USA */}
-          <div className="guia-card">
-            <img src="/IMG/usa.jpg" alt="Estados Unidos" />
-            <div className="guia-info">
-              <h3>🇺🇸 Estados Unidos</h3>
-              <p>
-                Estados Unidos tendrá la mayor cantidad de partidos
-                y estadios modernos en ciudades icónicas.
-              </p>
-              <ul>
-                <li>SoFi Stadium — Los Ángeles</li>
-                <li>AT&T Stadium — Dallas</li>
-                <li>MetLife Stadium — Nueva York</li>
-              </ul>
-              <button onClick={() => verPais('usa')}>
-                Explorar destinos
-              </button>
-            </div>
-          </div>
-
-          {/* CANADA */}
-          <div className="guia-card">
-            <img src="/IMG/canada.jpg" alt="Canadá" />
-            <div className="guia-info">
-              <h3>🇨🇦 Canadá</h3>
-              <p>
-                Canadá aportará estadios modernos rodeados
-                de paisajes naturales impresionantes.
-              </p>
-              <ul>
-                <li>BC Place — Vancouver</li>
-                <li>BMO Field — Toronto</li>
-              </ul>
-              <button onClick={() => verPais('canada')}>
-                Explorar destinos
-              </button>
-            </div>
-          </div>
-
+          {paises.length > 0 ? (
+            paises.map((pais) => {
+              // Extraemos las ciudades y estadios fuera del bloque HTML para evitar errores de sintaxis en React
+              const ciudades = pais.ciudades || pais.Ciudad || pais.ciudad || [];
+              return (
+                <div className="guia-card" key={pais.id}>
+                  <img src={obtenerImagen(pais.nombre)} alt={pais.nombre} />
+                  <div className="guia-info">
+                    <h3>{pais.nombre}</h3>
+                    <p>
+                      Explora la cultura, gastronomía y los estadios en {pais.nombre}.
+                    </p>
+                    <ul>
+                      {ciudades.slice(0, 3).map((ciudad) => {
+                        const estadios = ciudad.estadios || ciudad.Estadio || ciudad.estadio || [];
+                        return estadios.map((estadio) => (
+                          <li key={estadio.id}>
+                            {estadio.nombre} — {ciudad.nombre}
+                          </li>
+                        ));
+                      })}
+                    </ul>
+                    <button onClick={() => verPais(pais)}>
+                      Explorar destinos
+                    </button>
+                  </div>
+                </div>
+              );
+            })
+          ) : (
+            <p>Cargando destinos...</p>
+          )}
         </div>
       </section>
 
       <footer>
         <p>© 2026 Viajero Mundial</p>
       </footer>
-    </>
+    </div>
   );
 };
 

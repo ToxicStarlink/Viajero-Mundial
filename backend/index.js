@@ -166,6 +166,26 @@ app.get("/api/usuarios/:id/boletos", async (req, res) => {
   }
 });
 
+// Obtener países para la Guía Turística
+app.get("/api/paises", async (req, res) => {
+  try {
+    const paises = await prisma.pais.findMany({
+      include: {
+        ciudades: {
+          include: {
+            estadios: true,
+            sitios: true,
+          },
+        },
+      },
+    });
+    res.json(paises);
+  } catch (error) {
+    console.error("Error al obtener países:", error);
+    res.status(500).json({ error: "Error al obtener la guía turística" });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`Servidor listo en http://localhost:${PORT}`);
 });

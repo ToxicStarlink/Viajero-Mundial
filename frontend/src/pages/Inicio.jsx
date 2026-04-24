@@ -64,9 +64,9 @@ console.log("¿Qué hay en el disco?:", localStorage.getItem("usuario"));
       <section className="eventos">
         <h2>Partidos destacados</h2>
         <div className="contenedor-partidos">
-          {partidosDestacados.map((p) => (
+          {partidosDestacados.map((p, index) => (
             <div className="card" key={p.id}>
-              <img src={`/IMG/partido${p.id}.jpg`} alt="Partido" />
+              <img src={`/IMG/partido${(index % 3) + 1}.jpg`} alt="Partido" />
               <div className="card-info">
                 <h3>
                   {p.equipo1.nombre} vs {p.equipo2.nombre}
@@ -84,9 +84,9 @@ console.log("¿Qué hay en el disco?:", localStorage.getItem("usuario"));
       <section className="proximos">
         <h2>Próximos partidos del mundial</h2>
         <div className="contenedor-proximos">
-          {proximosPartidos.map((p) => (
+          {proximosPartidos.map((p, index) => (
             <div className="proximo-card" key={p.id}>
-              <img src={`/IMG/partido${p.id}.jpg`} alt="Partido" />
+              <img src={`/IMG/partido${(index % 3) + 4}.jpg`} alt="Partido" />
               <div className="proximo-info">
                 <h3>
                   {p.equipo1.nombre} vs {p.equipo2.nombre}
