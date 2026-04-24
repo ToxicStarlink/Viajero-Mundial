@@ -45,7 +45,6 @@ const Perfil = () => {
           <p>
             <strong>Nombre:</strong> {usuario.nombre} {usuario.apellido}
           </p>
-
           <p>
             <strong>Correo:</strong> {usuario.correo}
           </p>

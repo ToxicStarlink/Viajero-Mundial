@@ -69,7 +69,7 @@ const Compra = () => {
                   alert(
                     `¡Pago completado! Boletos registrados para ${details.payer.name.given_name}`,
                   );
-                  navigate("/");
+                  navigate("/perfil");
                 } catch (err) {
                   console.error("Error al guardar la compra:", err);
                   setError(
