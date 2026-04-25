@@ -24,7 +24,7 @@ const Inicio = () => {
     return () => clearInterval(interval);
   }, []);
 
-  //Datos de partidos destacados
+  
   const [partidosDestacados, setPartidosDestacados] = useState([]);
   const [proximosPartidos, setProximosPartidos] = useState([]);
 console.log("¿Qué hay en el disco?:", localStorage.getItem("usuario"));

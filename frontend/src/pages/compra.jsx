@@ -100,8 +100,9 @@ const Compra = () => {
       }
     };
 
-    // Usamos el entorno "test" de PayPal universal para desarrollo local.
-    // Esto evita todos los bloqueos de cookies, privacidad y CORS en localhost.
+  
+
+   
     const expectedSrc = "https://www.paypal.com/sdk/js?client-id=test&currency=MXN";
     const existingScript = document.getElementById("paypal-sdk-script");
     
