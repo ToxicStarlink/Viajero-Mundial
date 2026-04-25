@@ -24,7 +24,7 @@ const Partidos = () => {
     obtenerDatos();
   }, []);
 
-  // Lógica para filtrar los partidos
+  
   const partidosFiltrados = listaPartidos.filter((partido) => {
     const textoBuscado = busqueda.toLowerCase();
     const equipo1 = partido.equipo1?.nombre?.toLowerCase() || "";
