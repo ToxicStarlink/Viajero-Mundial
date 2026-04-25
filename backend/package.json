@@ -21,10 +21,8 @@
     "express": "^5.2.1",
     "jsonwebtoken": "^9.0.3",
     "react-router-dom": "^7.14.2"
-
-    
   },
-   "prisma": {
+  "prisma": {
     "seed": "node prisma/seed.js"
   }
 }

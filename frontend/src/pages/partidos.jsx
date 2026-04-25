@@ -11,6 +11,7 @@ const Partidos = () => {
   const [busqueda, setBusqueda] = useState("");
   const [fecha, setFecha] = useState("");
   const [estadio, setEstadio] = useState("");
+  
 
   useEffect(() => {
     const obtenerDatos = async () => {
