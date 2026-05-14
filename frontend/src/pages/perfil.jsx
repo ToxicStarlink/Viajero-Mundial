@@ -10,7 +10,7 @@ const Perfil = () => {
   const [usuario, setUsuario] = useState(null);
   const [historialCompras, setHistorialCompras] = useState([]);
   useEffect(() => {
-    // Obtener usuario del localStorage
+
     const usuarioGuardado = localStorage.getItem("usuario");
     if (!usuarioGuardado) {
       navigate("/login");
@@ -18,7 +18,7 @@ const Perfil = () => {
     }
     const userObj = JSON.parse(usuarioGuardado);
     setUsuario(userObj);
-    // Extraer boletos desde la base de datos
+
     const obtenerHistorial = async () => {
       try {
         const res = await axios.get(
@@ -55,30 +55,35 @@ const Perfil = () => {
           <div className="contenedor-compras">
             {historialCompras.length > 0 ? (
               historialCompras.map((compra) => (
-                <div className="compra-card" key={compra.id || compra.asiento}>
-                  <img
-                    src={compra.img || "/IMG/info3.jpg"}
-                    alt={compra.partido?.nombre || "Partido"}
-                  />
-
-                  <div className="compra-info">
-                    {" "}
-                    <h3>{compra.partido?.nombre || "Partido"}</h3>
-                    <p>
-                      {compra.partido?.fecha
-                        ? new Date(compra.partido.fecha).toLocaleDateString(
-                            "es-MX",
-                          )
-                        : "Fecha no disponible"}
-                    </p>
-                    <p style={{ margin: "6px 0", color: "#333" }}>
-                      Asiento: {compra.asiento}
-                    </p>
-                    <span>
-                      {compra.precio ? `$${compra.precio} USD` : "Pagado"}
-                    </span>
+                <Link
+                  to={`/boleto/${compra.id}`}
+                  state={{ compra }}
+                  key={compra.id || compra.asiento}
+                  style={{ textDecoration: "none", color: "inherit" }}
+                >
+                  <div className="compra-card">
+                    <img
+                      src={compra.img || "/IMG/info3.jpg"}
+                      alt={compra.partido?.nombre || "Partido"}
+                    />
+                    <div className="compra-info">
+                      <h3>{compra.partido?.nombre || "Partido"}</h3>
+                      <p>
+                        {compra.partido?.fecha
+                          ? new Date(compra.partido.fecha).toLocaleDateString(
+                              "es-MX",
+                            )
+                          : "Fecha no disponible"}
+                      </p>
+                      <p style={{ margin: "6px 0", color: "#333" }}>
+                        Asiento: {compra.asiento}
+                      </p>
+                      <span>
+                        {compra.precio ? `$${compra.precio} USD` : "Pagado"}
+                      </span>
+                    </div>
                   </div>
-                </div>
+                </Link>
               ))
             ) : (
               <p>No has comprado boletos aún.</p>

@@ -8,6 +8,7 @@ import Registro from "./pages/registro";
 import Compra from "./pages/compra";
 import Guia from "./pages/guia";
 import Perfil from "./pages/perfil";
+import BoletoDetalle from './pages/BoletoDetalle';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/compra" element={<Compra />} />
         <Route path="/guia" element={<Guia />} />
         <Route path="/perfil" element={<Perfil />} />
+        <Route path="/boleto/:id" element={<BoletoDetalle />} />
       </Routes>
     </Router>
   );
