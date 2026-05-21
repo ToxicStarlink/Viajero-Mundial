@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import Navbar from "../components/Navbar";
@@ -15,6 +15,29 @@ const Boletos = () => {
 
   const { id } = useParams();
   const navigate = useNavigate();
+
+const asientosPorZona = {
+  E: [
+    "E-A1", "E-A2", "E-A3", "E-A4", "E-A5",
+    "E-B1", "E-B2", "E-B3", "E-B4", "E-B5",
+    "E-C1", "E-C2", "E-C3", "E-C4", "E-C5",
+    "E-D1", "E-D2", "E-D3", "E-D4", "E-D5",
+    "E-E1", "E-E2", "E-E3", "E-E4", "E-E5",
+    "E-F1", "E-F2", "E-F3", "E-F4", "E-F5"
+  ],
+
+  F: [
+    "F-A1", "F-A2", "F-A3", "F-A4", "F-A5",
+    "F-B1", "F-B2", "F-B3", "F-B4", "F-B5",
+    "F-C1", "F-C2", "F-C3", "F-C4", "F-C5",
+    "F-D1", "F-D2", "F-D3", "F-D4", "F-D5"
+  ],
+
+  G: [
+    "G-A1", "G-A2", "G-A3", "G-A4", "G-A5", 
+    "G-B1", "G-B2", "G-B3", "G-B4", "G-B5"
+  ]
+};
 
   useEffect(() => {
     const obtenerDatos = async () => {
@@ -132,12 +155,12 @@ const Boletos = () => {
               </button>
               
               <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: "10px", maxWidth: "350px", margin: "25px auto" }}>
-                {["A1", "A2", "A3", "A4", "A5", "B1", "B2", "B3", "B4", "B5", "C1", "C2", "C3", "C4", "C5"].map((asiento) => (
+                {asientosPorZona[zonaSeleccionada.charAt(0)]?.map((asiento) => (  
                   <button
                     key={asiento}
                     onClick={() => toggleAsiento(asiento)}
                     style={{ 
-                        padding: "12px", 
+                        padding: "10.5px", 
                         cursor: "pointer", 
                         backgroundColor: asientosSeleccionados.includes(asiento) ? "#00b894" : "#f1f2f6", 
                         color: asientosSeleccionados.includes(asiento) ? "white" : "#333", 

@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const { PrismaClient } = require("@prisma/client");
+const { z } = require("zod");
 
 const app = express();
 const prisma = new PrismaClient();
@@ -27,8 +28,26 @@ app.get("/api/partidos", async (req, res) => {
 });
 
 //registro
+//validación registro
+
+const registroSchema = z.object({
+  nombre: z.string().min(2, "El nombre debe tener al menos 2 caracteres"),
+  apellido: z.string().min(2, "El apellido debe tener al menos 2 caracteres"),
+  correo: z.string().email("Debe ser un correo electrónico válido"),
+  contraena: z.string().min(6, "La contraseña debe tener al menos 6 caracteres"),
+});
+
 app.post("/api/registro", async (req, res) => {
-  const { nombre, apellido, correo, contraena } = req.body;
+  const validacion = registroSchema.safeParse(req.body);
+
+  if (!validacion.success) {
+    return res.status(400).json({ 
+      error: "Datos inválidos", 
+      detalles: validacion.error.issues 
+    });
+  }
+
+  const { nombre, apellido, correo, contraena } = validacion.data;
 
   try {
     const nuevoUsuario = await prisma.usuario.create({
@@ -50,8 +69,23 @@ app.post("/api/registro", async (req, res) => {
 });
 
 //login
+//Validación Login
+
+const loginSchema = z.object({
+  correo: z.string().email("Debe ser un correo electrónico válido"),
+  contraena: z.string().min(1, "La contraseña es obligatoria"),
+});
+
 app.post("/api/login", async (req, res) => {
-  const { correo, contraena } = req.body;
+  const validacion = loginSchema.safeParse(req.body);
+
+  if (!validacion.success) {
+    return res.status(400).json({ error: "Por favor envía un correo y contraseña válidos" });
+  }
+
+  const { correo, contraena } = validacion.data;
+
+
   try {
     const usuario = await prisma.usuario.findUnique({
       where: { correo: correo },

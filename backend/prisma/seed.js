@@ -2,7 +2,7 @@ const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
 async function main() {
-  console.log("Iniciando el sembrado de datos (Seed)... 🌱");
+  console.log("Iniciando el sembrado de datos (Seed)");
 
   // Limpieza en orden por las llaves foráneas
   await prisma.boleto.deleteMany();

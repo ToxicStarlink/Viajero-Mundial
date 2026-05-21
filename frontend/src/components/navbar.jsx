@@ -35,20 +35,23 @@ const Navbar = () => {
             style={{ display: "flex", gap: "15px", alignItems: "center" }}
           >
             <Link to="/perfil" className="login">
-              Hola, {usuario?.nombre || "Usuario"}
+              Mi perfil
             </Link>
             
-            <button
-              onClick={cerrarSesion}
+            <a
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                cerrarSesion();
+              }}
               className="login"
               style={{
                 background: "#ff4d4d",
-                border: "none",
                 cursor: "pointer",
               }}
             >
               Salir
-            </button>
+            </a>
           </div>
         ) : (
           <Link to="/login" className="login">
