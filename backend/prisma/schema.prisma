@@ -5,7 +5,7 @@
 // backend/prisma/schema.prisma
 
 datasource db {
-  provider = "sqlite"
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
 

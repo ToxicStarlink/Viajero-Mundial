@@ -12,7 +12,7 @@ app.use(express.json());
 
 //Prueba de conexión
 app.get("/", (req, res) => {
-  res.send("Servidor de Viajero Mundial funcionando ⚽");
+  res.send("Servidor de Viajero Mundial funcionando ");
 });
 
 //Partido inicio
