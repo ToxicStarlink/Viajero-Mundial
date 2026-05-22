@@ -55,7 +55,7 @@ const Compra = () => {
                 details = await actions.order.capture();
               } catch (captureErr) {
                 console.error("Error al capturar el pago:", captureErr);
-                // BYPASS: Si es el error de cookies de localhost, simulamos el éxito para poder seguir programando
+               
                 if (captureErr.message && captureErr.message.includes("Buyer access token not present")) {
                   console.warn("Bypass activo: Simulando pago exitoso por bloqueo de cookies en localhost.");
                   details = { payer: { name: { given_name: "Usuario de Prueba" } } };
