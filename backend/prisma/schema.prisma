@@ -93,7 +93,7 @@ model Usuario {
   nombre     String
   apellido   String
   correo     String   @unique
-  contraena  String
+  contrasena  String
   boletos    Boleto[]
 }
 

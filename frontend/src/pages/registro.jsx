@@ -8,7 +8,6 @@ const Registro = () => {
   const [formData, setFormData] = useState({
     nombre: "",
     apellido: "",
-    usuario: "",
     correo: "",
     password: "",
     confirmar: "",
@@ -26,12 +25,11 @@ const Registro = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { nombre, apellido, usuario, correo, password, confirmar } = formData;
+    const { nombre, apellido, correo, password, confirmar } = formData;
 
     if (
       !nombre ||
       !apellido ||
-      !usuario ||
       !correo ||
       !password ||
       !confirmar
@@ -52,7 +50,7 @@ const Registro = () => {
         nombre: formData.nombre,
         apellido: formData.apellido,
         correo: formData.correo,
-        contraena: formData.password, 
+        contrasena: formData.password, 
       });
 
       console.log("Respuesta del servidor:", res.data);
@@ -61,9 +59,19 @@ const Registro = () => {
       
       navigate("/login");
     } catch (err) {
-      const mensajeError =
-        err.response?.data?.error || "Error al conectar con el servidor";
-      setError(mensajeError);
+      // 1. Imprimimos el error completo en la consola para verlo a detalle
+      console.log("Error detallado de Zod:", err.response?.data);
+
+      // 2. Le decimos a React que si hay "detalles" de Zod, nos los muestre en pantalla
+      const detallesZod = err.response?.data?.detalles;
+      
+      if (detallesZod && detallesZod.length > 0) {
+        // Zod guarda el mensaje exacto en detallesZod[0].message
+        setError(`Error en ${detallesZod[0].path}: ${detallesZod[0].message}`);
+      } else {
+        const mensajeError = err.response?.data?.error || "Error al conectar con el servidor";
+        setError(mensajeError);
+      }
     }
   };
 
@@ -109,14 +117,7 @@ const Registro = () => {
             onChange={handleChange}
             required
           />
-          <input
-            type="text"
-            name="usuario"
-            placeholder="Usuario"
-            value={formData.usuario}
-            onChange={handleChange}
-            required
-          />
+          
           <input
             type="email"
             name="correo"

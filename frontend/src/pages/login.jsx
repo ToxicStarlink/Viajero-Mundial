@@ -19,7 +19,7 @@ const Login = () => {
       setError("");
       const res = await axios.post("http://localhost:3000/api/login", {
         correo: formData.correo,
-        contraena: formData.password,
+        contrasena: formData.password,
       });
 
       console.log("Login exitoso:", res.data);

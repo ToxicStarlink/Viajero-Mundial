@@ -206,7 +206,7 @@ async function main() {
       nombre: "mika",
       apellido: "mika",
       correo: "Mikasa@gmail.com",
-      contraena: "mika", 
+      contrasena: "mika", 
     },
   });
 

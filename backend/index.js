@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const { PrismaClient } = require("@prisma/client");
 const { z } = require("zod");
+const bcrypt = require("bcrypt");
 
 const app = express();
 const prisma = new PrismaClient();
@@ -34,7 +35,7 @@ const registroSchema = z.object({
   nombre: z.string().min(2, "El nombre debe tener al menos 2 caracteres"),
   apellido: z.string().min(2, "El apellido debe tener al menos 2 caracteres"),
   correo: z.string().email("Debe ser un correo electrónico válido"),
-  contraena: z.string().min(6, "La contraseña debe tener al menos 6 caracteres"),
+  contrasena: z.string().min(6, "La contraseña debe tener al menos 6 caracteres"),
 });
 
 app.post("/api/registro", async (req, res) => {
@@ -47,15 +48,18 @@ app.post("/api/registro", async (req, res) => {
     });
   }
 
-  const { nombre, apellido, correo, contraena } = validacion.data;
+  const { nombre, apellido, correo, contrasena } = validacion.data;
 
   try {
+  
+    const passwordHasheada = await bcrypt.hash(contrasena, 10);
+
     const nuevoUsuario = await prisma.usuario.create({
       data: {
         nombre: nombre,
         apellido: apellido,
         correo: correo,
-        contraena: contraena,
+        contrasena: passwordHasheada, 
       },
     });
     res.status(201).json({ mensaje: "Usuario creado", usuario: nuevoUsuario });
@@ -73,7 +77,7 @@ app.post("/api/registro", async (req, res) => {
 
 const loginSchema = z.object({
   correo: z.string().email("Debe ser un correo electrónico válido"),
-  contraena: z.string().min(1, "La contraseña es obligatoria"),
+  contrasena: z.string().min(1, "La contraseña es obligatoria"),
 });
 
 app.post("/api/login", async (req, res) => {
@@ -83,7 +87,7 @@ app.post("/api/login", async (req, res) => {
     return res.status(400).json({ error: "Por favor envía un correo y contraseña válidos" });
   }
 
-  const { correo, contraena } = validacion.data;
+  const { correo, contrasena } = validacion.data;
 
 
   try {
@@ -91,9 +95,17 @@ app.post("/api/login", async (req, res) => {
       where: { correo: correo },
     });
 
-    if (usuario && usuario.contraena === contraena) {
-      res.json({ mensaje: "¡Bienvenido!", usuario });
+    if (usuario) {
+      const passwordValida = await bcrypt.compare(contrasena, usuario.contrasena);
+      
+      if (passwordValida) {
+        res.json({ mensaje: "¡Bienvenido!", usuario });
+      } else {
+        // La contraseña no coincide
+        res.status(401).json({ error: "Correo o contraseña incorrectos" });
+      }
     } else {
+      // El usuario no existe
       res.status(401).json({ error: "Correo o contraseña incorrectos" });
     }
 
