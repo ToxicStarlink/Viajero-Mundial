@@ -7,7 +7,7 @@ import "../CSS/inicio.css";
 
 const Inicio = () => {
 
-  //Hero de imagenes q cambian
+
   const heroImages = [
     "/IMG/Estadio1.jpg",
     "/IMG/Estadio2.jpg",
