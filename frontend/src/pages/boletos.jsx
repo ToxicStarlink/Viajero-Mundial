@@ -12,6 +12,7 @@ const Boletos = () => {
   const [precioZona, setPrecioZona] = useState(0);
   const [idEstadioZona, setIdEstadioZona] = useState(null);
   const [cargando, setCargando] = useState(true);
+  const [asientosOcupados, setAsientosOcupados] = useState([]);
 
   const { id } = useParams();
   const navigate = useNavigate();
@@ -67,6 +68,15 @@ const asientosPorZona = {
         setIdEstadioZona(res.data.id);
         setZonaSeleccionada(nombreZona);
         setAsientosSeleccionados([]);
+        
+        // Consultar asientos ocupados para bloquearlos
+        const ocupadosRes = await axios.get(`http://localhost:3000/api/asientos-ocupados`, {
+          params: {
+            fk_partido: partido.id,
+            fk_estadio_zona: res.data.id
+          }
+        });
+        setAsientosOcupados(ocupadosRes.data);
       }
     } catch (error) {
       alert("No se pudo cargar el precio de esta zona.");
@@ -155,23 +165,29 @@ const asientosPorZona = {
               </button>
               
               <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: "10px", maxWidth: "350px", margin: "25px auto" }}>
-                {asientosPorZona[zonaSeleccionada.charAt(0)]?.map((asiento) => (  
+                {asientosPorZona[zonaSeleccionada.charAt(0)]?.map((asiento) => {
+                  const ocupado = asientosOcupados.includes(asiento);
+                  const seleccionado = asientosSeleccionados.includes(asiento);
+                  return (  
                   <button
                     key={asiento}
-                    onClick={() => toggleAsiento(asiento)}
+                    onClick={() => !ocupado && toggleAsiento(asiento)}
+                    disabled={ocupado}
                     style={{ 
                         padding: "10.5px", 
-                        cursor: "pointer", 
-                        backgroundColor: asientosSeleccionados.includes(asiento) ? "#00b894" : "#f1f2f6", 
-                        color: asientosSeleccionados.includes(asiento) ? "white" : "#333", 
+                        cursor: ocupado ? "not-allowed" : "pointer", 
+                        backgroundColor: ocupado ? "#dcdde1" : (seleccionado ? "#00b894" : "#f1f2f6"), 
+                        color: ocupado ? "#7f8fa6" : (seleccionado ? "white" : "#333"), 
                         border: "1px solid #dcdde1", 
                         borderRadius: "6px", 
-                        fontWeight: "bold" 
+                        fontWeight: "bold",
+                        opacity: ocupado ? 0.6 : 1
                     }}
                   >
                     {asiento}
                   </button>
-                ))}
+                  );
+                })}
               </div>
 
               <p style={{ fontSize: "24px", fontWeight: "bold", margin: "20px 0", color: "#2d3436" }}>

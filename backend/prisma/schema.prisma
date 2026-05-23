@@ -78,7 +78,7 @@ model Partido {
   id         Int       @id @default(autoincrement())
   nombre     String
   fecha      DateTime
-  hora       String    // En SQLite se maneja mejor como String o DateTime
+  hora       String    
   fk_estadio Int
   estadio    Estadio   @relation(fields: [fk_estadio], references: [id])
   fk_equipo1 Int
@@ -92,8 +92,9 @@ model Usuario {
   id_usuario Int      @id @default(autoincrement())
   nombre     String
   apellido   String
+  usuario    String?  
   correo     String   @unique
-  contrasena  String
+  contraena  String
   boletos    Boleto[]
 }
 
