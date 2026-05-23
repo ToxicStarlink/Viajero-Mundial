@@ -26,12 +26,11 @@ const BoletoDetalle = () => {
     );
   }
 
-  const qrData = JSON.stringify({
-    id_boleto: compra.id,
-    partido_id: compra.partido?.id || "Desconocido",
-    asiento: compra.asiento,
-    fecha: compra.partido?.fecha || "Sin fecha"
-  });
+  const fechaFormateada = compra.partido?.fecha 
+    ? new Date(compra.partido.fecha).toLocaleDateString("es-MX", { year: 'numeric', month: 'long', day: 'numeric'}) 
+    : "Fecha no disponible";
+
+  const qrData = ` ¡Tu boleto oficial de Viajero Mundial! \n\n Folio de boleto: ${compra.id}\n Asiento: ${compra.asiento}\n Fecha del partido: ${fechaFormateada}\n Hora: ${compra.partido?.hora || "Por definir"}\n\n¡Prepárate para vivir la emoción del Mundial! `;
 
   return (
     <div className="inicio-container">

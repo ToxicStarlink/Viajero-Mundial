@@ -2,7 +2,6 @@ const express = require("express");
 const cors = require("cors");
 const { PrismaClient } = require("@prisma/client");
 const { z } = require("zod");
-const bcrypt = require("bcrypt");
 
 const app = express();
 const prisma = new PrismaClient();
@@ -35,7 +34,7 @@ const registroSchema = z.object({
   nombre: z.string().min(2, "El nombre debe tener al menos 2 caracteres"),
   apellido: z.string().min(2, "El apellido debe tener al menos 2 caracteres"),
   correo: z.string().email("Debe ser un correo electrónico válido"),
-  contrasena: z.string().min(6, "La contraseña debe tener al menos 6 caracteres"),
+  contraena: z.string().min(6, "La contraseña debe tener al menos 6 caracteres"),
 });
 
 app.post("/api/registro", async (req, res) => {
@@ -48,18 +47,15 @@ app.post("/api/registro", async (req, res) => {
     });
   }
 
-  const { nombre, apellido, correo, contrasena } = validacion.data;
+  const { nombre, apellido, correo, contraena } = validacion.data;
 
   try {
-  
-    const passwordHasheada = await bcrypt.hash(contrasena, 10);
-
     const nuevoUsuario = await prisma.usuario.create({
       data: {
         nombre: nombre,
         apellido: apellido,
         correo: correo,
-        contrasena: passwordHasheada, 
+        contraena: contraena,
       },
     });
     res.status(201).json({ mensaje: "Usuario creado", usuario: nuevoUsuario });
@@ -77,7 +73,7 @@ app.post("/api/registro", async (req, res) => {
 
 const loginSchema = z.object({
   correo: z.string().email("Debe ser un correo electrónico válido"),
-  contrasena: z.string().min(1, "La contraseña es obligatoria"),
+  contraena: z.string().min(1, "La contraseña es obligatoria"),
 });
 
 app.post("/api/login", async (req, res) => {
@@ -87,7 +83,7 @@ app.post("/api/login", async (req, res) => {
     return res.status(400).json({ error: "Por favor envía un correo y contraseña válidos" });
   }
 
-  const { correo, contrasena } = validacion.data;
+  const { correo, contraena } = validacion.data;
 
 
   try {
@@ -95,17 +91,9 @@ app.post("/api/login", async (req, res) => {
       where: { correo: correo },
     });
 
-    if (usuario) {
-      const passwordValida = await bcrypt.compare(contrasena, usuario.contrasena);
-      
-      if (passwordValida) {
-        res.json({ mensaje: "¡Bienvenido!", usuario });
-      } else {
-        // La contraseña no coincide
-        res.status(401).json({ error: "Correo o contraseña incorrectos" });
-      }
+    if (usuario && usuario.contraena === contraena) {
+      res.json({ mensaje: "¡Bienvenido!", usuario });
     } else {
-      // El usuario no existe
       res.status(401).json({ error: "Correo o contraseña incorrectos" });
     }
 
@@ -113,6 +101,44 @@ app.post("/api/login", async (req, res) => {
     res.status(500).json({ error: "Error en el servidor" });
   }
 
+});
+
+// Actualizar usuario
+app.put("/api/usuarios/:id", async (req, res) => {
+  const { id } = req.params;
+  const { nombre, apellido, correo, contraena } = req.body;
+
+  // Validar que el ID sea un número válido
+  const userId = parseInt(id);
+  if (isNaN(userId)) {
+    return res.status(400).json({ error: "ID de usuario inválido." });
+  }
+
+  try {
+    const data = { nombre, apellido, correo };
+    
+    // Actualizar contraseña
+    if (contraena) {
+      data.contraena = contraena;
+    }
+
+
+    const usuario = await prisma.usuario.update({
+      where: { id_usuario: userId },
+      data,
+    });
+
+    res.json({ mensaje: "Usuario actualizado con éxito", usuario });
+  } catch (error) {
+    console.error("Error al actualizar usuario en BD:", error); 
+    if (error.code === "P2002") {
+      res.status(400).json({ error: "Este correo ya está en uso por otra cuenta." });
+    } else if (error.code === "P2025") {
+      res.status(404).json({ error: "Usuario no encontrado en la base de datos." });
+    } else {
+      res.status(500).json({ error: "Error interno al actualizar el usuario." });
+    }
+  }
 });
 
 // obtener partido por id 
