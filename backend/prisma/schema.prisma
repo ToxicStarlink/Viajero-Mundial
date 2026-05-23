@@ -1,0 +1,110 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+// backend/prisma/schema.prisma
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Pais {
+  id      Int      @id @default(autoincrement())
+  nombre  String
+  ciudades Ciudad[]
+  equipos  Equipos[]
+}
+
+model Ciudad {
+  id       Int       @id @default(autoincrement())
+  nombre   String
+  fk_pais  Int
+  pais     Pais      @relation(fields: [fk_pais], references: [id])
+  sitios   Sitio[]
+  estadios Estadio[]
+}
+
+model Sitio {
+  id          Int    @id @default(autoincrement())
+  nombre      String
+  tipo        String
+  descripcion String
+  ubicacion   String
+  id_ciudad   Int
+  ciudad      Ciudad @relation(fields: [id_ciudad], references: [id])
+}
+
+model Estadio {
+  id          Int           @id @default(autoincrement())
+  nombre      String
+  capacidad   Int
+  fk_ciudad   Int
+  ciudad      Ciudad        @relation(fields: [fk_ciudad], references: [id])
+  zonasRel    EstadioZona[]
+  partidos    Partido[]
+}
+
+model Zona {
+  id          Int           @id @default(autoincrement())
+  tipo        String
+  estadiosRel EstadioZona[]
+}
+
+model EstadioZona {
+  id         Int       @id @default(autoincrement())
+  precio     Decimal
+  fk_zona    Int
+  fk_estadio Int
+  zona       Zona      @relation(fields: [fk_zona], references: [id])
+  estadio    Estadio   @relation(fields: [fk_estadio], references: [id])
+  boletos    Boleto[]
+}
+
+model Equipos {
+  id          Int       @id @default(autoincrement())
+  nombre      String
+  fk_pais     Int
+  pais        Pais      @relation(fields: [fk_pais], references: [id])
+  partidos_h  Partido[] @relation("Equipo1")
+  partidos_a  Partido[] @relation("Equipo2")
+}
+
+model Partido {
+  id         Int       @id @default(autoincrement())
+  nombre     String
+  fecha      DateTime
+  hora       String    
+  fk_estadio Int
+  estadio    Estadio   @relation(fields: [fk_estadio], references: [id])
+  fk_equipo1 Int
+  equipo1    Equipos   @relation("Equipo1", fields: [fk_equipo1], references: [id])
+  fk_equipo2 Int
+  equipo2    Equipos   @relation("Equipo2", fields: [fk_equipo2], references: [id])
+  boletos    Boleto[]
+}
+
+model Usuario {
+  id_usuario Int      @id @default(autoincrement())
+  nombre     String
+  apellido   String
+  usuario    String?  
+  correo     String   @unique
+  contraena  String
+  boletos    Boleto[]
+}
+
+model Boleto {
+  id              Int         @id @default(autoincrement())
+  asiento         String
+  fk_partido      Int
+  fk_estadio_zona Int
+  fk_usuario      Int
+  partido         Partido     @relation(fields: [fk_partido], references: [id])
+  estadio_zona    EstadioZona @relation(fields: [fk_estadio_zona], references: [id])
+  usuario         Usuario     @relation(fields: [fk_usuario], references: [id_usuario])
+}

@@ -6,42 +6,25 @@ color:#111;
 }
 
 
-/* CONTENEDOR GENERAL */
-
-body > *{
-max-width:1200px;
-margin-left:auto;
-margin-right:auto;
+.inicio-container {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 
-
-/* HEADER FLOTANTE */
-
 .header{
-
 display:flex;
 justify-content:space-between;
 align-items:center;
-
 padding:18px 40px;
-
 background:white;
-
 box-shadow:0 4px 20px rgba(0,0,0,0.08);
-
 position:sticky;
 top:20px;
-
 border-radius:14px;
-
 z-index:1000;
-
 }
-
-
-
-/* LOGO */
 
 .logo a{
 font-size:22px;
@@ -50,21 +33,11 @@ text-decoration:none;
 color:#00b894;
 }
 
-
-
-/* MENU DERECHA */
-
 .menu-derecha{
-
 display:flex;
 align-items:center;
 gap:30px;
-
 }
-
-
-
-/* NAV */
 
 .nav{
 display:flex;
@@ -82,10 +55,6 @@ transition:0.2s;
 color:#00b894;
 }
 
-
-
-/* LOGIN */
-
 .login{
 background:#00b894;
 color:white;
@@ -95,62 +64,33 @@ text-decoration:none;
 font-weight:500;
 }
 
-
-
-/* HERO */
-
 .hero{
-
 height:420px;
-
 margin-top:30px;
-
 background-size:120%;
 background-position:center;
 background-repeat:no-repeat;
-
 display:flex;
 align-items:center;
 justify-content:center;
-
 color:white;
 text-align:center;
-
 position:relative;
-
 transition:opacity 1s ease-in-out;
-
 border-radius:20px;
-
 overflow:hidden;
-
 box-shadow:0 15px 40px rgba(0,0,0,0.25);
-
 }
-
-
-
-/* OVERLAY OSCURO */
 
 .hero::after{
-
 content:"";
-
 position:absolute;
-
 top:0;
 left:0;
-
 width:100%;
 height:100%;
-
 background:rgba(0,0,0,0.45);
-
 }
-
-
-
-/* HERO CONTENT */
 
 .hero-content{
 position:relative;
@@ -165,10 +105,6 @@ margin-bottom:10px;
 .hero p{
 margin-bottom:30px;
 }
-
-
-
-/* SEARCH */
 
 .search-box{
 display:flex;
@@ -191,10 +127,6 @@ border-radius:0 6px 6px 0;
 cursor:pointer;
 }
 
-
-
-/* EVENTOS */
-
 .eventos{
 padding:60px 0;
 }
@@ -203,57 +135,31 @@ padding:60px 0;
 margin-bottom:30px;
 }
 
-
-
-/* GRID */
-
 .contenedor-partidos{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
 gap:25px;
 }
 
-
-
-/* CARDS */
-
 .card{
-
 background:white;
-
 border-radius:12px;
-
 overflow:hidden;
-
 cursor:pointer;
-
 box-shadow:0 4px 12px rgba(0,0,0,0.08);
-
 transition:0.25s;
-
 }
 
 .card:hover{
-
 transform:translateY(-8px) scale(1.02);
-
 box-shadow:0 15px 30px rgba(0,0,0,0.18);
-
 }
-
-
-
-/* IMAGE */
 
 .card img{
 width:100%;
 height:180px;
 object-fit:cover;
 }
-
-
-
-/* INFO */
 
 .card-info{
 padding:18px;
@@ -273,27 +179,14 @@ font-weight:600;
 color:#00b894;
 }
 
-
-
-/* FOOTER */
-
 footer{
-
 text-align:center;
-
 padding:25px;
-
 background:white;
-
 border-top:1px solid #eee;
-
 margin-top:40px;
-
 border-radius:12px;
-
 }
-
-/* PROXIMOS PARTIDOS */
 
 .proximos{
 padding:40px 0;
@@ -305,35 +198,22 @@ grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
 gap:25px;
 }
 
-
-/* CARD PROXIMO */
-
 .proximo-card{
-
 position:relative;
-
 background:white;
-
 border-radius:12px;
-
 overflow:hidden;
-
 box-shadow:0 4px 12px rgba(0,0,0,0.08);
-
 }
 
 .proximo-card img{
-
 width:100%;
 height:170px;
 object-fit:cover;
-
 }
 
 .proximo-info{
-
 padding:16px;
-
 }
 
 .proximo-info h3{
@@ -345,150 +225,83 @@ margin:0;
 color:#666;
 }
 
-
-/* TOOLTIP */
-
 .tooltip{
-
 position:absolute;
-
 bottom:100%;
 left:50%;
-
 transform:translateX(-50%);
-
 background:white;
-
 color:#111;
-
 padding:12px 15px;
-
 border-radius:6px;
-
 box-shadow:0 6px 18px rgba(0,0,0,0.15);
-
 font-size:14px;
-
 width:200px;
-
 opacity:0;
-
 pointer-events:none;
-
 transition:0.25s;
-
 }
-
-
-/* HOVER */
 
 .proximo-card:hover .tooltip{
-
 opacity:1;
-
 bottom:110%;
-
 }
 
-/* SECCION BENEFICIOS */
-
 .beneficios{
-
 margin-top:80px;
 margin-bottom:60px;
-
 }
 
 .beneficios-contenedor{
-
 display:flex;
 gap:40px;
-
 background:#ececec;
-
 padding:40px;
-
 border-radius:20px;
-
 align-items:center;
-
 box-shadow:0 15px 35px rgba(0,0,0,0.15);
-
 }
 
-
-/* TEXTO */
-
 .beneficios-texto{
-
 flex:1;
-
 }
 
 .beneficios-texto h2{
-
 margin-top:0;
-
 font-size:28px;
-
 }
 
 .beneficios-texto p{
-
 color:#444;
 line-height:1.6;
-
 }
 
-
-/* BLOQUES DE BENEFICIOS */
-
 .beneficio{
-
 margin-top:20px;
-
 }
 
 .beneficio h3{
-
 margin-bottom:6px;
 color:#222;
-
 }
 
-
-/* IMAGEN */
-
 .beneficios-imagen{
-
 flex:1;
-
 display:flex;
 justify-content:center;
-
 }
 
 .beneficios-imagen img{
-
 width:100%;
-
 max-width:420px;
-
 border-radius:14px;
-
 object-fit:cover;
-
 box-shadow:0 10px 25px rgba(0,0,0,0.15);
-
 }
 
-/* NOTICIAS */
-
 .noticias{
-
 margin-top:80px;
 margin-bottom:60px;
-
 }
 
 .noticias h2{
@@ -500,221 +313,123 @@ color:#666;
 margin-bottom:30px;
 }
 
-
-/* CONTENEDOR */
-
 .contenedor-noticias{
-
 display:grid;
-
 grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-
 gap:30px;
-
 }
-
-
-/* CARD NOTICIA */
 
 .noticia-card{
-
 background:white;
-
 border-radius:12px;
-
 overflow:hidden;
-
 box-shadow:0 4px 12px rgba(0,0,0,0.08);
-
 transition:0.25s;
-
 }
-
-
-/* HOVER */
 
 .noticia-card:hover{
-
 transform:translateY(-6px);
-
 box-shadow:0 15px 30px rgba(0,0,0,0.15);
-
 }
-
-
-/* IMAGEN */
 
 .noticia-card img{
-
 width:100%;
-
 height:200px;
-
 object-fit:cover;
-
 }
-
-
-/* TEXTO */
 
 .noticia-info{
-
 padding:18px;
-
 }
 
-/* 🔧 TAMAÑO DEL TITULO (MODIFICAR AQUÍ SI QUIERES CAMBIARLO) */
+
 .noticia-info h3{
-
 margin:0 0 10px 0;
-
 font-size:18px;
-
 }
 
-/* 🔧 TAMAÑO DEL TEXTO DE NOTICIA (MODIFICAR AQUÍ) */
+
 .noticia-info p{
-
 margin:0;
-
 color:#555;
-
 font-size:14px;
-
 line-height:1.5;
-
 }
-
-/* PERFIL */
 
 .perfil{
-
 margin-top:60px;
-
 }
 
 .perfil h2{
-
 margin-bottom:25px;
-
 }
 
 .perfil-contenedor{
-
 display:flex;
-
 gap:30px;
-
 }
 
 .perfil-datos{
-
 background:white;
-
 padding:30px;
-
 border-radius:14px;
-
 box-shadow:0 6px 18px rgba(0,0,0,0.08);
-
 width:350px;
-
 }
 
 .perfil-datos h3{
-
 margin-top:0;
-
 margin-bottom:20px;
-
 }
 
 .perfil-datos p{
-
 margin-bottom:10px;
-
 color:#444;
-
 }
 
-
-
-/* COMPRAS */
-
 .compras{
-
 margin-top:60px;
-
 }
 
 .contenedor-compras{
-
 display:grid;
-
 grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-
 gap:25px;
-
 }
 
-
-
 .compra-card{
-
 background:white;
-
 border-radius:12px;
-
 overflow:hidden;
-
 box-shadow:0 4px 12px rgba(0,0,0,0.08);
-
 transition:0.25s;
-
 }
 
 .compra-card:hover{
-
 transform:translateY(-6px);
-
 box-shadow:0 15px 30px rgba(0,0,0,0.15);
-
 }
 
 .compra-card img{
-
 width:100%;
-
 height:180px;
-
 object-fit:cover;
-
 }
 
 .compra-info{
-
 padding:18px;
-
 }
 
 .compra-info h3{
-
 margin:0 0 8px 0;
-
 }
 
 .compra-info p{
-
 margin:0 0 10px 0;
-
 color:#666;
-
 }
 
 .compra-info span{
-
 font-weight:600;
-
 color:#00b894;
-
 }
